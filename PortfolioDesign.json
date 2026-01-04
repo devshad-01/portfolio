@@ -1,0 +1,494 @@
+{
+  "designSystem": {
+    "name": "Developer Portfolio Design System",
+    "version": "1.0",
+    "philosophy": "Clean, strategic, and confidence-inspiring. Focus on substance over spectacle with intentional visual hierarchy and sophisticated color relationships.",
+    
+    "colorPalette": {
+      "primary": {
+        "mint": "#6B9B8E",
+        "sage": "#8BB5A8",
+        "seafoam": "#A8CEC1",
+        "usage": "Primary actions, hero sections, accent elements"
+      },
+      "secondary": {
+        "charcoal": "#2C3E50",
+        "navy": "#1A2332",
+        "slate": "#374151",
+        "usage": "Text, navigation, structural elements"
+      },
+      "accent": {
+        "amber": "#F2B544",
+        "coral": "#E67E4D",
+        "usage": "CTAs, highlights, interactive states"
+      },
+      "neutral": {
+        "cream": "#F5F3EE",
+        "offWhite": "#FEFDFB",
+        "lightGray": "#E8E6E1",
+        "usage": "Backgrounds, cards, subtle dividers"
+      },
+      "semantic": {
+        "success": "#4CAF50",
+        "warning": "#FFA726",
+        "info": "#29B6F6",
+        "error": "#EF5350"
+      }
+    },
+    
+    "typography": {
+      "philosophy": "Large, confident, statement-making headlines with generous whitespace. Mix of geometric sans-serif for impact and subtle serif for credibility.",
+      
+      "fontFamilies": {
+        "display": {
+          "primary": "DM Sans, system-ui, -apple-system, sans-serif",
+          "weights": [500, 600, 700],
+          "usage": "Hero headlines, section titles"
+        },
+        "body": {
+          "primary": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weights": [400, 500, 600],
+          "usage": "Body text, descriptions, UI elements"
+        },
+        "accent": {
+          "primary": "Space Grotesk, monospace",
+          "weights": [400, 500, 700],
+          "usage": "Code, technical labels, timestamps"
+        }
+      },
+      
+      "scale": {
+        "hero": {
+          "desktop": "clamp(3.5rem, 8vw, 7rem)",
+          "mobile": "clamp(2.5rem, 10vw, 3.5rem)",
+          "lineHeight": 1.1,
+          "letterSpacing": "-0.02em",
+          "weight": 600
+        },
+        "h1": {
+          "desktop": "clamp(2.5rem, 5vw, 4rem)",
+          "mobile": "clamp(2rem, 8vw, 2.5rem)",
+          "lineHeight": 1.2,
+          "letterSpacing": "-0.01em",
+          "weight": 600
+        },
+        "h2": {
+          "desktop": "clamp(2rem, 4vw, 3rem)",
+          "mobile": "clamp(1.75rem, 6vw, 2rem)",
+          "lineHeight": 1.3,
+          "weight": 600
+        },
+        "h3": {
+          "desktop": "clamp(1.5rem, 3vw, 2rem)",
+          "mobile": "clamp(1.25rem, 5vw, 1.5rem)",
+          "lineHeight": 1.4,
+          "weight": 500
+        },
+        "body": {
+          "large": "1.125rem",
+          "regular": "1rem",
+          "small": "0.875rem",
+          "lineHeight": 1.7,
+          "weight": 400
+        },
+        "label": {
+          "size": "0.75rem",
+          "transform": "uppercase",
+          "letterSpacing": "0.1em",
+          "weight": 600
+        }
+      }
+    },
+    
+    "spacing": {
+      "philosophy": "Generous breathing room. Sections should feel spacious and confident.",
+      "scale": {
+        "xs": "0.5rem",
+        "sm": "1rem",
+        "md": "1.5rem",
+        "lg": "2.5rem",
+        "xl": "4rem",
+        "2xl": "6rem",
+        "3xl": "8rem",
+        "4xl": "12rem"
+      },
+      "sectionPadding": {
+        "desktop": "clamp(6rem, 12vh, 10rem)",
+        "mobile": "clamp(4rem, 10vh, 6rem)"
+      }
+    },
+    
+    "layout": {
+      "maxWidth": {
+        "content": "1280px",
+        "text": "68ch",
+        "hero": "1440px"
+      },
+      "grid": {
+        "columns": 12,
+        "gutter": {
+          "desktop": "2rem",
+          "mobile": "1rem"
+        }
+      },
+      "asymmetry": {
+        "enabled": true,
+        "description": "Use 60/40 or 70/30 splits instead of 50/50. Create visual tension through imbalanced layouts."
+      }
+    },
+    
+    "borderRadius": {
+      "philosophy": "Minimal, subtle curves. Avoid over-rounded elements.",
+      "scale": {
+        "none": "0px",
+        "subtle": "4px",
+        "small": "8px",
+        "medium": "12px",
+        "large": "16px",
+        "pill": "9999px"
+      }
+    },
+    
+    "effects": {
+      "shadows": {
+        "subtle": "0 1px 3px rgba(0, 0, 0, 0.04)",
+        "card": "0 4px 12px rgba(0, 0, 0, 0.06)",
+        "elevated": "0 12px 24px rgba(0, 0, 0, 0.08)",
+        "dramatic": "0 24px 48px rgba(0, 0, 0, 0.12)"
+      },
+      "transitions": {
+        "quick": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "standard": "300ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "smooth": "500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "springy": "600ms cubic-bezier(0.34, 1.56, 0.64, 1)"
+      },
+      "blur": {
+        "glass": "blur(12px)",
+        "frost": "blur(8px)"
+      }
+    },
+    
+    "animations": {
+      "philosophy": "Purposeful, subtle, never gratuitous. Animations should guide attention and provide feedback, not distract.",
+      
+      "types": {
+        "reveal": {
+          "name": "Staggered Reveal",
+          "description": "Elements fade up and in with slight stagger",
+          "duration": "800ms",
+          "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "stagger": "100ms"
+        },
+        "parallax": {
+          "name": "Subtle Depth Parallax",
+          "description": "Background elements move slightly slower than foreground",
+          "multiplier": "0.3-0.5",
+          "usage": "Hero sections, project showcases"
+        },
+        "magnetic": {
+          "name": "Magnetic Hover",
+          "description": "Elements subtly pull toward cursor on hover",
+          "distance": "10-20px",
+          "usage": "CTAs, project cards"
+        },
+        "morphing": {
+          "name": "Shape Morphing",
+          "description": "Geometric shapes subtly transform on scroll/interaction",
+          "duration": "1200ms",
+          "usage": "Decorative elements, section dividers"
+        },
+        "textReveal": {
+          "name": "Character-by-character Reveal",
+          "description": "Text appears letter by letter with slight blur-to-focus",
+          "duration": "40ms per character",
+          "usage": "Headlines, key statements"
+        }
+      }
+    },
+    
+    "components": {
+      "navigation": {
+        "style": "floating-pill",
+        "position": "top-center or top-right",
+        "behavior": "shrinks on scroll, expands on scroll-up",
+        "background": "glass-morphism with subtle blur",
+        "items": ["Work", "About", "Skills", "Contact"],
+        "cta": "Let's Talk - distinct style"
+      },
+      
+      "hero": {
+        "layout": "asymmetric-split",
+        "textSide": "60%",
+        "visualSide": "40%",
+        "headline": {
+          "pattern": "Bold statement about role/impact",
+          "example": "Building systems that scale. Automating what matters.",
+          "style": "Large, confident, line breaks for rhythm"
+        },
+        "subheading": {
+          "style": "Lighter weight, explains approach or philosophy",
+          "maxWidth": "60ch"
+        },
+        "visual": {
+          "type": "abstract-geometric-composition",
+          "elements": ["circles", "rectangles", "lines", "charts"],
+          "colors": ["primary palette with accent pops"],
+          "animation": "subtle floating/morphing"
+        },
+        "ctas": [
+          {
+            "primary": "View Projects",
+            "style": "solid background, prominent"
+          },
+          {
+            "secondary": "Download Resume",
+            "style": "outlined or text with arrow"
+          }
+        ]
+      },
+      
+      "projectCard": {
+        "variants": {
+          "featured": {
+            "size": "full-bleed or large asymmetric",
+            "layout": "60/40 split with large visual",
+            "content": [
+              "Project name and tagline",
+              "2-3 sentence impact statement",
+              "Tech stack pills",
+              "Metrics/results in grid",
+              "Large screenshot or visual",
+              "CTA: 'Explore Project' + 'View Code'"
+            ],
+            "visual": "Screenshot with subtle tilt or 3D perspective",
+            "hover": "Lift effect, content slides in"
+          },
+          "standard": {
+            "layout": "card with image top or left",
+            "content": [
+              "Project name",
+              "Brief description",
+              "Tech stack",
+              "Links"
+            ],
+            "hover": "Subtle lift, accent color border appears"
+          }
+        }
+      },
+      
+      "skillsSection": {
+        "layout": "multi-column-grid or masonry",
+        "categories": [
+          "Backend & APIs",
+          "DevOps & Cloud",
+          "Databases & Tools",
+          "Frontend"
+        ],
+        "presentation": {
+          "option1": "Bento-box grid with icons",
+          "option2": "Tabbed interface",
+          "option3": "Horizontal scrolling categories"
+        },
+        "skillDisplay": "Icon + Label, optional proficiency indicator"
+      },
+      
+      "statsBar": {
+        "style": "grid-divided-sections",
+        "metrics": [
+          "Years of Experience",
+          "Projects Completed",
+          "Technologies Mastered",
+          "Certifications"
+        ],
+        "visual": "Large numbers, icon above, label below",
+        "dividers": "subtle vertical lines"
+      },
+      
+      "footer": {
+        "layout": "multi-column with clear sections",
+        "sections": [
+          "Navigation links",
+          "Social links",
+          "Contact email",
+          "Availability status"
+        ],
+        "style": "Clean, organized, dark or contrasting background",
+        "cta": "Open to opportunities badge or message"
+      }
+    },
+    
+    "visualElements": {
+      "abstractShapes": {
+        "philosophy": "Geometric, intentional, not random. Shapes should suggest systems, architecture, connectivity.",
+        "shapes": ["circles", "rectangles", "rounded-rectangles", "lines", "grids"],
+        "usage": [
+          "Background decorations",
+          "Section dividers",
+          "Visual metaphors for technical concepts",
+          "Framing devices for content"
+        ],
+        "colors": "Use full palette with emphasis on primary + accent",
+        "layering": "Create depth through overlapping with different opacities"
+      },
+      
+      "codeSnippets": {
+        "usage": "Subtle background elements or decorative accents",
+        "style": "Blurred or low-opacity, syntax highlighted",
+        "placement": "Behind sections or as texture"
+      },
+      
+      "gradients": {
+        "style": "Subtle, sophisticated, not vibrant",
+        "examples": [
+          "Mint to seafoam",
+          "Charcoal to navy with 20% opacity",
+          "Cream to white"
+        ],
+        "usage": "Section backgrounds, card overlays, button hovers"
+      },
+      
+      "dividers": {
+        "style": "Clean, minimal, functional",
+        "types": [
+          "Thin horizontal lines with fade",
+          "Geometric shape separators",
+          "Color block transitions",
+          "Negative space"
+        ]
+      }
+    },
+    
+    "contentStrategy": {
+      "hero": {
+        "headline": "Clear role + value proposition",
+        "subheading": "Philosophy or approach in 1-2 sentences",
+        "avoid": "Generic 'welcome to my portfolio' statements"
+      },
+      
+      "about": {
+        "structure": [
+          "Brief background (journey to tech)",
+          "What drives you (specific, authentic)",
+          "Current focus",
+          "What you're looking for"
+        ],
+        "tone": "Professional but personable, confident not cocky"
+      },
+      
+      "projects": {
+        "featured": {
+          "content": [
+            "Problem statement",
+            "Your solution approach",
+            "Technical implementation highlights",
+            "Measurable impact/results",
+            "Lessons learned or unique challenges"
+          ],
+          "format": "Rich multimedia: screenshots, architecture diagrams, code snippets, demo videos"
+        }
+      }
+    },
+    
+    "interactionPatterns": {
+      "hover": {
+        "cards": "Lift + subtle shadow increase + accent border",
+        "buttons": "Color shift + slight scale (1.02)",
+        "links": "Underline slide-in from left",
+        "images": "Slight zoom (1.05) + overlay fade"
+      },
+      
+      "scroll": {
+        "parallax": "Background elements move slower",
+        "reveal": "Fade up + slight blur-to-focus",
+        "progress": "Subtle indicator if long page",
+        "stickyNav": "Shrinks and becomes more opaque"
+      },
+      
+      "loading": {
+        "style": "Skeleton screens with shimmer effect",
+        "color": "Neutral palette variations"
+      }
+    },
+    
+    "responsiveStrategy": {
+      "breakpoints": {
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px",
+        "2xl": "1536px"
+      },
+      "approach": "Mobile-first with progressive enhancement",
+      "mobileConsiderations": [
+        "Stack asymmetric layouts vertically",
+        "Increase touch targets to 44x44px minimum",
+        "Simplify animations (reduce motion for performance)",
+        "Collapse navigation to hamburger",
+        "Adjust typography scale (smaller but still bold)",
+        "Reduce section padding"
+      ]
+    },
+    
+    "performanceGuidelines": {
+      "images": "WebP with fallbacks, lazy loading, responsive srcset",
+      "animations": "CSS transforms and opacity only, 60fps target",
+      "fonts": "Subset fonts, preload critical fonts, use font-display: swap",
+      "code": "Code splitting, lazy load components below fold"
+    },
+    
+    "accessibilityRequirements": {
+      "contrast": "WCAG AA minimum (4.5:1 for text)",
+      "focus": "Clear focus indicators on all interactive elements",
+      "aria": "Proper labels for all UI elements",
+      "keyboard": "Full keyboard navigation support",
+      "motion": "Respect prefers-reduced-motion"
+    }
+  },
+  
+  "implementationGuide": {
+    "techStack": {
+      "framework": "React 18+",
+      "styling": "Tailwind CSS + CSS Modules for complex animations",
+      "animations": "Framer Motion",
+      "icons": "Lucide React",
+      "components": "Shadcn/ui for base components",
+      "utilities": "clsx for conditional classes"
+    },
+    
+    "folderStructure": {
+      "components": [
+        "layout (Header, Footer, Navigation)",
+        "sections (Hero, Projects, Skills, About, Contact)",
+        "ui (Button, Card, Badge, etc.)",
+        "animations (RevealOnScroll, MagneticHover, etc.)"
+      ],
+      "assets": ["images", "icons", "fonts"],
+      "styles": ["globals.css", "tailwind.config"],
+      "data": ["projects.json", "skills.json"]
+    },
+    
+    "keyFiles": {
+      "tailwind.config.js": {
+        "extend": {
+          "colors": "Custom palette from design system",
+          "fontFamily": "Custom font stacks",
+          "spacing": "Custom spacing scale",
+          "animation": "Custom animation keyframes"
+        }
+      }
+    }
+  },
+  
+  "aiPromptingGuidelines": {
+    "whenRequestingComponents": [
+      "Specify which section (Hero, Projects, etc.)",
+      "Reference color palette by name (mint, charcoal, etc.)",
+      "Mention animation type (reveal, magnetic, parallax)",
+      "Specify layout (asymmetric, bento-grid, etc.)",
+      "Request responsive behavior",
+      "Include accessibility requirements"
+    ],
+    
+    "examplePrompt": "Create a Hero component using the asymmetric-split layout (60/40). Left side should have a large headline using the hero typography scale in charcoal color, followed by a subheading in slate. Include two CTAs: primary button with mint background and secondary outlined button. Right side should have an abstract geometric composition using circles and rectangles from the primary palette with the morphing animation. Make it fully responsive and include reveal animations on mount."
+  }
+}
