@@ -15,24 +15,12 @@ const Hero = () => {
       <div className="absolute left-8 top-16 w-40 h-40 bg-nb-pink/30 rounded-full blur-3xl hidden lg:block" />
       <div className="absolute right-8 top-12 w-48 h-48 bg-nb-orange/30 rounded-full blur-3xl hidden lg:block" />
       
-      {/* Side Avatar - Blended with gradient mask */}
-      {avatarUrl && (
-        <div className="absolute right-0 top-0 bottom-0 w-2/5 hidden lg:block z-0">
-          <div className="relative w-full h-full">
-            <img 
-              src={avatarUrl} 
-              alt={about?.name || 'Profile'} 
-              className="absolute right-0 top-0 w-full h-full object-cover object-top"
-              style={{
-                maskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%)'
-              }}
-            />
-          </div>
-        </div>
-      )}
+      {/* Side Avatar removed from absolute layer — will be placed inside centered layout below */}
       
-      <div className="max-w-[900px] mx-auto px-6 relative z-10 text-left lg:text-left">
+      <div className="max-w-[1100px] mx-auto px-6 relative z-10">
+        <div className="flex items-center justify-center lg:justify-between gap-8 lg:gap-12">
+          {/* Text block */}
+          <div className="w-full lg:w-3/5 text-left">
         {/* Status badge */}
         <div className="inline-block mb-6">
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-white border-4 border-nb-black rounded-full shadow-brutal-sm dark:shadow-brutal-sm-dark">
@@ -79,8 +67,8 @@ const Hero = () => {
           </a>
         </div>
 
-        {/* Social Icons */}
-        <div className="hero-social flex gap-4 mt-2">
+          {/* Social Icons */}
+          <div className="hero-social flex gap-4 mt-2">
           {contact?.github && (
             <a
               href={contact.github}
@@ -108,6 +96,25 @@ const Hero = () => {
             >
               <Mail className="w-6 h-6 text-nb-black" />
             </a>
+          )}
+          </div>
+          </div>
+
+          {/* Image block - right side, shows on lg and part of centered layout */}
+          {avatarUrl && (
+            <div className="hidden lg:block w-2/5 flex-shrink-0 z-0">
+              <div className="w-full h-[520px] md:h-[600px] overflow-hidden">
+                <img
+                  src={avatarUrl}
+                  alt={about?.name || 'Profile'}
+                  className="w-full h-full object-cover object-top"
+                  style={{
+                    maskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%)',
+                    WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%)'
+                  }}
+                />
+              </div>
+            </div>
           )}
         </div>
       </div>
