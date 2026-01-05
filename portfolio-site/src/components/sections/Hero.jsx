@@ -15,14 +15,18 @@ const Hero = () => {
       <div className="absolute left-8 top-16 w-40 h-40 bg-nb-pink/30 rounded-full blur-3xl hidden lg:block" />
       <div className="absolute right-8 top-12 w-48 h-48 bg-nb-orange/30 rounded-full blur-3xl hidden lg:block" />
       
-      {/* Side Avatar - Large */}
+      {/* Side Avatar - Blended with gradient mask */}
       {avatarUrl && (
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 hidden lg:flex items-center justify-end pr-8 z-0">
-          <div className="w-full h-[500px] max-w-[400px] overflow-hidden">
+        <div className="absolute right-0 top-0 bottom-0 w-2/5 hidden lg:block z-0">
+          <div className="relative w-full h-full">
             <img 
               src={avatarUrl} 
               alt={about?.name || 'Profile'} 
-              className="w-full h-full object-cover object-center"
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[600px] object-cover object-center"
+              style={{
+                maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 100%)'
+              }}
             />
           </div>
         </div>
