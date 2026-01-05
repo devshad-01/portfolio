@@ -10,7 +10,7 @@ const Hero = () => {
   const avatarUrl = about?.avatar ? urlFor(about.avatar)?.url() : null;
   
   return (
-    <section className="bg-accent-primary dark:bg-dark-bg py-12 md:py-20 relative overflow-hidden">
+    <section className="bg-accent-primary dark:bg-dark-bg py-12 md:py-20 relative overflow-hidden min-h-[520px] md:min-h-[600px]">
       {/* Decorative shapes */}
       <div className="absolute left-8 top-16 w-40 h-40 bg-nb-pink/30 rounded-full blur-3xl hidden lg:block" />
       <div className="absolute right-8 top-12 w-48 h-48 bg-nb-orange/30 rounded-full blur-3xl hidden lg:block" />
@@ -22,10 +22,10 @@ const Hero = () => {
             <img 
               src={avatarUrl} 
               alt={about?.name || 'Profile'} 
-              className="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[600px] object-cover object-center"
+              className="absolute right-0 top-0 w-full h-full object-cover object-top"
               style={{
-                maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 100%)'
+                maskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%)'
               }}
             />
           </div>
