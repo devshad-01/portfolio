@@ -1,0 +1,5 @@
+Project Cards: border-4 border-charcoal shadow-brutal hover-brutal-lift
+Skill Items: border-3 border-charcoal shadow-brutal-sm hover-brutal-press rounded-full
+About Card: border-4 border-charcoal shadow-brutal hover-brutal-lift
+Contact Buttons: border-4 border-charcoal shadow-brutal hover-brutal-press
+Navigation Logo: border-3 border-charcoal shadow-brutal-sm

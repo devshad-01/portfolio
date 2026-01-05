@@ -12,82 +12,45 @@ const Footer = () => {
     { icon: Mail, href: `mailto:${contactInfo.email}`, label: 'Email' },
   ];
 
-  const footerLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'About', href: '/#about' },
-    { label: 'Contact', href: '/#contact' },
-  ];
-
   return (
-    <footer className="border-t border-light-border dark:border-dark-border bg-light-surface dark:bg-dark-surface">
+    <footer className="bg-nb-black border-t-4 border-nb-black">
       <div className="max-w-content mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Brand */}
-          <div className="space-y-4">
-            <Link
-              to="/"
-              className="inline-block text-xl font-bold font-display text-light-text dark:text-dark-text"
-            >
-              <span className="text-mint">{'<'}</span>
-              Shad
-              <span className="text-mint">{' />'}</span>
-            </Link>
-            <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary max-w-xs">
-              {siteConfig.description}. Let's build something amazing together.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold font-display text-light-text dark:text-dark-text uppercase tracking-wider">
-              Quick Links
-            </h4>
-            <nav className="flex flex-col gap-2">
-              {footerLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className="text-sm text-light-text-secondary dark:text-dark-text-secondary hover:text-mint transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Connect */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold font-display text-light-text dark:text-dark-text uppercase tracking-wider">
-              Connect
-            </h4>
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target={social.href.startsWith('mailto') ? undefined : '_blank'}
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text-secondary dark:text-dark-text-secondary hover:text-mint hover:bg-mint/10 transition-all duration-200"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
+          <Link
+            to="/"
+            className="inline-flex items-center gap-3 px-5 py-2.5 bg-white text-nb-black font-black uppercase border-4 border-white rounded-full"
+          >
+            <div className="w-8 h-8 bg-accent-primary rounded-full flex items-center justify-center text-white text-sm font-black">
+              SM
             </div>
-            <p className="text-sm text-light-text-muted dark:text-dark-text-muted">
-              {contactInfo.location}
-            </p>
+            Shad Mirza
+          </Link>
+
+          {/* Social Icons */}
+          <div className="flex gap-3">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target={social.href.startsWith('mailto') ? undefined : '_blank'}
+                rel="noopener noreferrer"
+                className="w-12 h-12 flex items-center justify-center bg-white text-nb-black border-4 border-white rounded-full hover:bg-accent-primary hover:border-accent-primary hover:text-white transition-all duration-200"
+                aria-label={social.label}
+              >
+                <social.icon className="w-5 h-5" />
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-light-border dark:border-dark-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-light-text-muted dark:text-dark-text-muted">
+        <div className="mt-8 pt-8 border-t-2 border-gray-700 flex flex-col md:flex-row items-center justify-center gap-4">
+          <p className="text-sm font-bold text-gray-400">
             © {currentYear} {siteConfig.name}. All rights reserved.
           </p>
-          <p className="text-sm text-light-text-muted dark:text-dark-text-muted flex items-center gap-1">
-            Built with <Heart className="w-4 h-4 text-amber fill-amber" /> using React & Tailwind
+          <p className="text-sm font-bold text-gray-400 flex items-center gap-1">
+            Built with <Heart className="w-4 h-4 text-nb-pink fill-nb-pink" /> using React & Tailwind
           </p>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { ExternalLink, Github, Search, Filter, ArrowLeft } from 'lucide-react';
+import { ExternalLink, Github, Search, Filter, ArrowLeft, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useProjects } from '../hooks/usePortfolioData';
 import { urlFor } from '../config/sanity';
@@ -50,24 +50,28 @@ const ProjectsPage = () => {
   };
 
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-24 pb-20 bg-nb-gray dark:bg-dark-bg min-h-screen">
       <div className="max-w-content mx-auto px-6">
         {/* Header */}
         <div className="mb-12">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm text-light-text-secondary dark:text-dark-text-secondary hover:text-mint transition-colors mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white text-nb-black font-black uppercase text-sm border-4 border-nb-black rounded-full shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
           
-          <h1 className="text-h1-mobile md:text-h1 font-bold font-display text-light-text dark:text-dark-text mb-4">
-            All Projects
-          </h1>
-          <p className="text-body-lg text-light-text-secondary dark:text-dark-text-secondary max-w-2xl">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-16 h-16 flex items-center justify-center bg-nb-cyan border-4 border-nb-black rounded-full shadow-brutal-sm">
+              <Briefcase className="w-7 h-7 text-nb-black" />
+            </div>
+            <h1 className="text-h1-mobile md:text-h1 font-black text-nb-black dark:text-white">
+              All Projects
+            </h1>
+          </div>
+          <p className="text-xl font-bold text-gray-600 dark:text-gray-300 max-w-2xl">
             A collection of projects I've worked on, from full-stack applications to DevOps automation.
-            Each project represents a unique challenge and learning experience.
           </p>
         </div>
 
@@ -75,27 +79,27 @@ const ProjectsPage = () => {
         <div className="flex flex-col md:flex-row gap-4 mb-10">
           {/* Search */}
           <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-light-text-muted dark:text-dark-text-muted" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-nb-black" />
             <input
               type="text"
               placeholder="Search projects or technologies..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder:text-light-text-muted dark:placeholder:text-dark-text-muted focus:outline-none focus:ring-2 focus:ring-mint/30 focus:border-mint transition-all"
+              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-dark-surface text-nb-black dark:text-white font-bold border-4 border-nb-black rounded-nb placeholder:text-gray-400 focus:outline-none focus:shadow-brutal-sm transition-all"
             />
           </div>
 
           {/* Category Filter */}
           <div className="flex items-center gap-2 flex-wrap">
-            <Filter className="w-5 h-5 text-light-text-muted dark:text-dark-text-muted" />
+            <Filter className="w-5 h-5 text-nb-black dark:text-white" />
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-2 font-black uppercase text-sm border-4 border-nb-black rounded-full transition-all duration-200 ${
                   selectedCategory === cat
-                    ? 'bg-mint text-white'
-                    : 'bg-light-surface dark:bg-dark-surface text-light-text-secondary dark:text-dark-text-secondary hover:bg-light-bg-secondary dark:hover:bg-dark-surface-hover border border-light-border dark:border-dark-border'
+                    ? 'bg-accent-primary text-white shadow-brutal-sm'
+                    : 'bg-white dark:bg-dark-surface text-nb-black dark:text-white hover:translate-x-[2px] hover:translate-y-[2px]'
                 }`}
               >
                 {getCategoryLabel(cat)}
@@ -114,18 +118,20 @@ const ProjectsPage = () => {
         {/* Empty State */}
         {filteredProjects.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-light-text-secondary dark:text-dark-text-secondary mb-4">
-              No projects found matching your criteria.
-            </p>
-            <button
-              onClick={() => {
-                setSearchQuery('');
-                setSelectedCategory('all');
-              }}
-              className="text-mint hover:underline"
-            >
-              Clear filters
-            </button>
+            <div className="inline-block p-8 bg-white border-4 border-nb-black rounded-nb shadow-brutal">
+              <p className="text-xl font-black text-nb-black mb-4">
+                No projects found matching your criteria.
+              </p>
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedCategory('all');
+                }}
+                className="px-6 py-3 bg-accent-primary text-white font-black uppercase border-4 border-nb-black rounded-full shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
+              >
+                Clear filters
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -135,6 +141,10 @@ const ProjectsPage = () => {
 
 const ProjectCard = ({ project, index }) => {
   if (!project) return null;
+  
+  // Get alternating colors for cards
+  const colors = ['bg-nb-pink', 'bg-nb-orange', 'bg-nb-cyan', 'bg-accent-primary'];
+  const headerColor = colors[index % colors.length];
   
   // Get image URL - handle both Sanity and local images
   const getImageUrl = () => {
@@ -153,50 +163,45 @@ const ProjectCard = ({ project, index }) => {
   
   return (
     <article
-      className="group relative rounded-2xl overflow-hidden bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-mint/50 transition-all duration-300 hover:shadow-medium dark:hover:shadow-dark-medium"
+      className="group bg-white dark:bg-dark-surface border-4 border-nb-black rounded-nb shadow-brutal hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all duration-200 overflow-hidden"
       style={{ animationDelay: `${index * 50}ms` }}
     >
+      {/* Project Header */}
+      <div className={`${headerColor} p-4 border-b-4 border-nb-black`}>
+        <div className="flex items-center justify-between">
+          <span className="px-3 py-1 bg-white text-nb-black font-black uppercase text-xs border-2 border-nb-black rounded-full">
+            {project.category || 'Project'}
+          </span>
+          <span className="text-nb-black font-black text-sm">
+            {project.year || '2024'}
+          </span>
+        </div>
+      </div>
+
       {/* Project Image */}
       {imageUrl && (
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-48 overflow-hidden border-b-4 border-nb-black">
           <img 
             src={imageUrl} 
             alt={project.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-light-surface dark:from-dark-surface via-transparent to-transparent" />
-        </div>
-      )}
-      
-      {/* Featured Badge */}
-      {project.featured && (
-        <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-amber text-charcoal text-xs font-semibold">
-          Featured
+          {/* Featured Badge */}
+          {project.featured && (
+            <div className="absolute top-3 right-3 px-3 py-1 bg-nb-orange text-nb-black text-xs font-black uppercase border-2 border-nb-black rounded-full shadow-brutal-sm">
+              Featured
+            </div>
+          )}
         </div>
       )}
 
       {/* Content */}
       <div className="p-6 space-y-4">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-medium font-mono text-mint uppercase tracking-wider">
-              {project.year || '2024'}
-            </span>
-            {project.category && (
-              <>
-                <span className="w-1 h-1 rounded-full bg-light-text-muted dark:bg-dark-text-muted" />
-                <span className="text-xs text-light-text-muted dark:text-dark-text-muted capitalize">
-                  {project.category}
-                </span>
-              </>
-            )}
-          </div>
-          <h3 className="text-xl font-semibold font-display text-light-text dark:text-dark-text group-hover:text-mint transition-colors">
-            {project.title || 'Untitled Project'}
-          </h3>
-        </div>
+        <h3 className="text-xl font-black text-nb-black dark:text-white">
+          {project.title || 'Untitled Project'}
+        </h3>
 
-        <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary line-clamp-2">
+        <p className="text-sm font-bold text-gray-600 dark:text-gray-300 line-clamp-2">
           {project.description || 'No description available'}
         </p>
 
@@ -206,48 +211,41 @@ const ProjectCard = ({ project, index }) => {
             {project.techStack.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-1 text-xs font-medium rounded-md bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text-secondary dark:text-dark-text-secondary"
+                className="px-3 py-1 text-xs font-black uppercase bg-nb-gray dark:bg-dark-surface-hover text-nb-black dark:text-white border-2 border-nb-black rounded-full"
               >
                 {tech}
               </span>
             ))}
             {project.techStack.length > 4 && (
-              <span className="px-2.5 py-1 text-xs font-medium rounded-md bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text-muted dark:text-dark-text-muted">
+              <span className="px-3 py-1 text-xs font-black bg-nb-gray dark:bg-dark-surface-hover text-gray-500 border-2 border-gray-400 rounded-full">
                 +{project.techStack.length - 4}
               </span>
             )}
           </div>
         )}
 
-        {/* Long Description (if available) */}
-        {project.longDescription && (
-          <p className="text-sm text-light-text-muted dark:text-dark-text-muted line-clamp-3">
-            {project.longDescription}
-          </p>
-        )}
-
         {/* Links */}
-        <div className="flex items-center gap-4 pt-4 border-t border-light-border dark:border-dark-border">
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-mint hover:underline"
-            >
-              <ExternalLink className="w-4 h-4" />
-              Live Demo
-            </a>
-          )}
+        <div className="flex items-center gap-3 pt-4 border-t-2 border-nb-black">
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary hover:text-mint transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-nb-black text-white font-black uppercase text-xs border-2 border-nb-black rounded-full hover:bg-gray-800 transition-colors"
             >
               <Github className="w-4 h-4" />
-              Source Code
+              Code
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-accent-primary text-white font-black uppercase text-xs border-2 border-nb-black rounded-full hover:bg-blue-600 transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Live
             </a>
           )}
         </div>

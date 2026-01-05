@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Linkedin } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
-import { contactInfo } from '../../data/portfolio';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,15 +17,14 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
   const navItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
     { label: 'About', href: '/#about' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Skills', href: '/#skills' },
     { label: 'Contact', href: '/#contact' },
   ];
 
@@ -37,35 +35,30 @@ const Navigation = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-light-surface/80 dark:bg-dark-surface/80 backdrop-blur-lg shadow-soft dark:shadow-dark-soft'
-          : 'bg-transparent'
-      }`}
-    >
+    <nav className={`sticky top-0 z-50 bg-accent-primary dark:bg-dark-bg border-b-4 border-nb-black py-4 transition-all duration-200`}>
       <div className="max-w-content mx-auto px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link
-            to="/"
-            className="text-lg font-bold font-display text-light-text dark:text-dark-text hover:text-mint dark:hover:text-mint transition-colors"
-          >
-            <span className="text-mint">{'<'}</span>
-            Shad
-            <span className="text-mint">{' />'}</span>
+        <div className="flex items-center justify-between">
+          {/* Logo/Brand */}
+          <Link to="/" className="flex items-center gap-3">
+            <div className="flex items-center gap-3 bg-white px-4 py-2 border-3 border-nb-black rounded-full shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200">
+              <div className="w-8 h-8 bg-gradient-to-br from-accent-primary to-nb-blue-dark rounded-full flex items-center justify-center text-white font-black text-sm">
+                SM
+              </div>
+              <div className="hidden sm:block">
+                <div className="font-black text-sm text-nb-black">Shadrack Mutinda</div>
+                <div className="text-xs text-gray-500">Software Engineer</div>
+              </div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  isActive(item.href)
-                    ? 'text-mint bg-mint/10'
-                    : 'text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text dark:hover:text-dark-text hover:bg-light-bg-secondary/50 dark:hover:bg-dark-surface-hover/50'
+                className={`text-white font-bold hover:underline hover:decoration-4 hover:underline-offset-4 transition-all ${
+                  isActive(item.href) ? 'underline decoration-4 underline-offset-4' : ''
                 }`}
               >
                 {item.label}
@@ -74,60 +67,54 @@ const Navigation = () => {
           </div>
 
           {/* Right side actions */}
-          <div className="flex items-center gap-2">
-            {/* LinkedIn */}
-            <a
-              href={contactInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary hover:text-mint hover:bg-mint/10 transition-all duration-200"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
-
+          <div className="flex items-center gap-3">
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-lg bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text dark:text-dark-text hover:bg-mint/10 hover:text-mint transition-all duration-200"
+              className="p-3 bg-white border-3 border-nb-black rounded-full shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
-                <Sun className="w-5 h-5" />
+                <Sun className="w-5 h-5 text-nb-black" />
               ) : (
-                <Moon className="w-5 h-5" />
+                <Moon className="w-5 h-5 text-nb-black" />
               )}
             </button>
+
+            {/* CTA Button */}
+            <a
+              href="#contact"
+              className="hidden md:inline-flex px-6 py-2 bg-white font-bold text-sm border-3 border-nb-blue-dark rounded-full hover:bg-blue-50 transition-colors"
+            >
+              Get in Touch
+            </a>
 
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-lg bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text dark:text-dark-text transition-all duration-200"
+              className="md:hidden p-3 bg-white border-3 border-nb-black rounded-full shadow-brutal-sm"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 text-nb-black" />
               ) : (
-                <Menu className="w-5 h-5" />
+                <Menu className="w-5 h-5 text-nb-black" />
               )}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ${
-            isMobileMenuOpen ? 'max-h-64 pb-4' : 'max-h-0'
-          }`}
-        >
-          <div className="flex flex-col gap-1 pt-2">
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-64 pt-4' : 'max-h-0'}`}>
+          <div className="flex flex-col gap-2 bg-white border-4 border-nb-black rounded-nb p-4 shadow-brutal">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.href}
-                className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-3 rounded-lg font-bold transition-all ${
                   isActive(item.href)
-                    ? 'text-mint bg-mint/10'
-                    : 'text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text dark:hover:text-dark-text hover:bg-light-bg-secondary dark:hover:bg-dark-surface-hover'
+                    ? 'bg-accent-primary text-white'
+                    : 'text-nb-black hover:bg-nb-gray'
                 }`}
               >
                 {item.label}
