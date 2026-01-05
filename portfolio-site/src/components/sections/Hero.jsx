@@ -15,20 +15,20 @@ const Hero = () => {
       <div className="absolute left-8 top-16 w-40 h-40 bg-nb-pink/30 rounded-full blur-3xl hidden lg:block" />
       <div className="absolute right-8 top-12 w-48 h-48 bg-nb-orange/30 rounded-full blur-3xl hidden lg:block" />
       
-      {/* Background Avatar */}
+      {/* Side Avatar - Large */}
       {avatarUrl && (
-        <div className="absolute inset-0 flex items-center justify-center opacity-10">
-          <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-white/20">
+        <div className="absolute right-0 top-0 bottom-0 w-1/3 hidden lg:flex items-center justify-end pr-8 z-0">
+          <div className="w-full h-[500px] max-w-[400px] overflow-hidden">
             <img 
               src={avatarUrl} 
-              alt={about?.name || 'Profile Background'} 
-              className="w-full h-full object-cover blur-sm"
+              alt={about?.name || 'Profile'} 
+              className="w-full h-full object-cover object-center"
             />
           </div>
         </div>
       )}
       
-      <div className="max-w-narrow mx-auto px-6 relative z-10 text-center">
+      <div className="max-w-narrow mx-auto px-6 relative z-10 text-left lg:text-left">
         {/* Status badge */}
         <div className="inline-block mb-6">
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-white border-4 border-nb-black rounded-full shadow-brutal-sm dark:shadow-brutal-sm-dark">
@@ -57,7 +57,7 @@ const Hero = () => {
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-10">
+        <div className="flex flex-wrap gap-4 mb-10">
           <Link
             to="/projects"
             className="inline-flex items-center gap-3 px-8 py-4 bg-nb-black text-white font-black uppercase border-4 border-nb-black rounded-full shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
@@ -76,7 +76,7 @@ const Hero = () => {
         </div>
 
         {/* Social Icons */}
-        <div className="flex justify-center gap-4">
+        <div className="flex gap-4">
           {contact?.github && (
             <a
               href={contact.github}
