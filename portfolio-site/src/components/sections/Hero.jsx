@@ -1,4 +1,4 @@
-import { Briefcase, Mail, Github, Linkedin, ArrowRight, Sparkles } from 'lucide-react';
+import { Briefcase, Mail, Github, Linkedin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAbout, useContact } from '../../hooks/usePortfolioData';
 import { urlFor } from '../../config/sanity';
@@ -16,170 +16,122 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-br from-nb-blue via-accent-primary to-nb-purple dark:from-gray-900 dark:via-dark-bg dark:to-gray-800 py-16 md:py-24 relative overflow-hidden min-h-screen flex items-center">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent animate-gradient-x" />
+    <section className="relative bg-white dark:bg-gray-900 overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" />
       
-      {/* Geometric shapes with animation */}
-      <div className="absolute -left-20 top-1/4 w-80 h-80 bg-nb-pink/20 rounded-full blur-3xl animate-pulse-slow hidden lg:block" />
-      <div className="absolute -right-20 top-1/3 w-96 h-96 bg-nb-orange/20 rounded-full blur-3xl animate-pulse-slow hidden lg:block" />
-      <div className="absolute left-1/2 bottom-0 w-64 h-64 bg-nb-purple/15 rounded-full blur-3xl animate-pulse-slower" />
-      
-      {/* Grid pattern */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBWNzBoMzBWMzB6IiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48L3N2Zz4=')] opacity-20" />
-      
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/30 rounded-full animate-float"
-            style={{
-              left: `${20 + i * 15}%`,
-              top: `${30 + i * 10}%`,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: `${15 + i * 5}s`
-            }}
-          />
-        ))}
-      </div>
+      {/* Minimal grid pattern */}
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]" 
+           style={{
+             backgroundImage: `linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)`,
+             backgroundSize: '64px 64px'
+           }} 
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
-          {/* Text block */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left" data-aos="fade-up">
-            {/* Status badge with animation */}
-            <div className="inline-block mb-8">
-              <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/95 backdrop-blur-sm border-4 border-nb-black rounded-full shadow-brutal-sm dark:shadow-brutal-sm-dark hover:scale-105 transition-transform duration-300 group">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75" />
-                  <div className="relative w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-400 rounded-full" />
-                </div>
-                <span className="text-sm font-black uppercase tracking-wider text-nb-black">
-                  {contact?.availability || 'Open to Opportunities'}
-                </span>
-                <Sparkles className="w-4 h-4 text-nb-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          {/* Content */}
+          <div className="space-y-8" data-aos="fade-up">
+            
+            {/* Status badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 dark:bg-emerald-900/20 rounded-full border border-emerald-200 dark:border-emerald-800">
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">
+                {contact?.availability || 'Available for opportunities'}
+              </span>
             </div>
 
-            {/* Main heading with gradient */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight md:leading-none mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/95 to-white/90">
+            {/* Heading */}
+            <div className="space-y-4">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {about?.name || 'Shadrack Mutinda'}
-              </span>
-            </h1>
-            
-            {/* Animated subtitle */}
-            <div className="overflow-hidden mb-8">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white/95 mb-4 animate-slide-up">
+              </h1>
+              
+              <h2 className="text-2xl sm:text-3xl font-medium text-gray-600 dark:text-gray-300">
                 {about?.title || 'Senior Software Engineer'}
               </h2>
             </div>
 
-            {/* Description with enhanced typography */}
-            <div className="relative">
-              <p className="text-lg md:text-xl text-white/85 max-w-2xl mb-12 leading-relaxed relative z-10">
-                {about?.intro || 'Experienced full-stack developer specializing in scalable web applications, cloud architecture, and enterprise solutions.'}
-              </p>
-              {/* Highlight effect */}
-              <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-nb-orange to-nb-pink rounded-full" />
-            </div>
+            {/* Description */}
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl">
+              {about?.intro || 'Experienced full-stack developer specializing in scalable web applications, cloud architecture, and enterprise solutions.'}
+            </p>
 
-            {/* CTA Buttons with enhanced interaction */}
-            <div className="hero-buttons flex flex-wrap justify-center lg:justify-start gap-4 mb-12">
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4">
               <Link
                 to="/projects"
-                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-nb-black to-gray-900 text-white font-black uppercase border-4 border-nb-black rounded-full shadow-brutal hover:shadow-brutal-press hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-200 group"
               >
-                <Briefcase className="w-5 h-5 transition-transform group-hover:rotate-12" />
-                <span>View Work</span>
-                <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                <Briefcase className="w-5 h-5" />
+                <span>View Projects</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
               
               <a
                 href="#contact"
-                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-white to-gray-100 text-nb-black font-black uppercase border-4 border-nb-black rounded-full shadow-brutal hover:shadow-brutal-press hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-medium rounded-lg border border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600 transition-colors duration-200 group"
               >
-                <Mail className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <span>Contact Me</span>
-                <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                <Mail className="w-5 h-5" />
+                <span>Get in Touch</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </a>
             </div>
 
-            {/* Social Icons with enhanced hover effects */}
-            <div className="hero-social flex justify-center lg:justify-start gap-4">
+            {/* Social Links */}
+            <div className="flex gap-3 pt-4">
               {[
                 { icon: Github, href: contact?.github, label: 'GitHub' },
                 { icon: Linkedin, href: contact?.linkedin, label: 'LinkedIn' },
                 { icon: Mail, href: contact?.email ? `mailto:${contact.email}` : '', label: 'Email' }
-              ].map((social, index) => (
+              ].map((social) => (
                 social.href && (
                   <a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative w-14 h-14 flex items-center justify-center bg-white/95 backdrop-blur-sm border-4 border-nb-black rounded-full shadow-brutal hover:shadow-brutal-press hover:translate-y-[-4px] transition-all duration-300 hover:rotate-6"
-                    style={{ transitionDelay: `${index * 50}ms` }}
+                    className="w-11 h-11 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
                     aria-label={social.label}
                   >
-                    <social.icon className="w-6 h-6 text-nb-black transition-transform group-hover:scale-110" />
-                    {/* Tooltip effect */}
-                    <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-nb-black text-white text-xs font-bold px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                      {social.label}
-                    </span>
+                    <social.icon className="w-5 h-5" />
                   </a>
                 )
               ))}
             </div>
           </div>
 
-          {/* Avatar Image with enhanced styling */}
+          {/* Avatar */}
           {avatarUrl && (
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end" data-aos="fade-left">
+            <div className="relative flex justify-center lg:justify-end" data-aos="fade-left">
               <div className="relative w-full max-w-md">
-                {/* Glow effect */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-nb-orange/30 via-nb-pink/20 to-nb-purple/30 rounded-3xl blur-xl animate-pulse-slow" />
+                {/* Subtle glow */}
+                <div className="absolute -inset-1 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-2xl blur-2xl opacity-20" />
                 
-                {/* Image container */}
-                <div className="relative overflow-hidden rounded-2xl border-8 border-white/20 shadow-2xl group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-nb-orange/10 to-nb-purple/10 mix-blend-overlay" />
+                {/* Image */}
+                <div className="relative rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-800 shadow-2xl">
                   <img
                     src={avatarUrl}
                     alt={about?.name || 'Profile'}
-                    className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-auto object-cover"
                     loading="eager"
                   />
-                  
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-nb-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Decorative corner accents */}
-                  <div className="absolute top-4 left-4 w-8 h-8 border-t-4 border-l-4 border-white/50 rounded-tl-2xl" />
-                  <div className="absolute top-4 right-4 w-8 h-8 border-t-4 border-r-4 border-white/50 rounded-tr-2xl" />
-                  <div className="absolute bottom-4 left-4 w-8 h-8 border-b-4 border-l-4 border-white/50 rounded-bl-2xl" />
-                  <div className="absolute bottom-4 right-4 w-8 h-8 border-b-4 border-r-4 border-white/50 rounded-br-2xl" />
+                </div>
+
+                {/* Stats badges */}
+                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 px-5 py-3 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white">8+ Years</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Experience</p>
                 </div>
                 
-                {/* Floating tech badges */}
-                <div className="absolute -bottom-4 -left-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full border-4 border-nb-black shadow-brutal-sm animate-float-slow">
-                  <span className="text-sm font-black text-nb-black">🚀 8+ Years Exp</span>
-                </div>
-                <div className="absolute -top-4 -right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full border-4 border-nb-black shadow-brutal-sm animate-float-slower">
-                  <span className="text-sm font-black text-nb-black">⭐ Full-Stack</span>
+                <div className="absolute -top-6 -right-6 bg-white dark:bg-gray-800 px-5 py-3 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white">Full-Stack</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Developer</p>
                 </div>
               </div>
             </div>
           )}
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden lg:block">
-          <div className="animate-bounce">
-            <div className="w-6 h-10 border-4 border-white/30 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-scroll" />
-            </div>
-          </div>
         </div>
       </div>
     </section>
