@@ -32,7 +32,7 @@ const Hero = () => {
         </div>
       )}
       
-      <div className="max-w-narrow mx-auto px-6 relative z-10 text-left lg:text-left">
+      <div className="max-w-[900px] mx-auto px-6 relative z-10 text-left lg:text-left">
         {/* Status badge */}
         <div className="inline-block mb-6">
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-white border-4 border-nb-black rounded-full shadow-brutal-sm dark:shadow-brutal-sm-dark">
@@ -47,21 +47,21 @@ const Hero = () => {
         </div>
 
         {/* Main heading */}
-        <h1 className="text-hero-mobile md:text-hero font-black text-white mb-4">
+        <h1 className="text-[56px] md:text-[84px] leading-tight font-black text-white mb-4">
           {about?.name || 'Shadrack Mutinda'}
         </h1>
         
-        <h2 className="text-2xl md:text-4xl font-black text-white/90 mb-6">
+        <h2 className="text-[28px] md:text-[36px] font-black text-white/90 mb-6">
           {about?.title || 'Senior Software Engineer'}
         </h2>
 
         {/* Description */}
-        <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10">
+        <p className="text-[18px] md:text-[19px] text-white/80 max-w-[650px] mb-10">
           {about?.intro || 'Experienced full-stack developer specializing in scalable web applications, cloud architecture, and enterprise solutions.'}
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap gap-4 mb-10">
+        <div className="hero-buttons flex flex-wrap gap-4 mb-10">
           <Link
             to="/projects"
             className="inline-flex items-center gap-3 px-8 py-4 bg-nb-black text-white font-black uppercase border-4 border-nb-black rounded-full shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
@@ -80,7 +80,7 @@ const Hero = () => {
         </div>
 
         {/* Social Icons */}
-        <div className="flex gap-4">
+        <div className="hero-social flex gap-4 mt-2">
           {contact?.github && (
             <a
               href={contact.github}
