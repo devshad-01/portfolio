@@ -4,53 +4,25 @@ import { Link } from 'react-router-dom';
 import { useProjects } from '../hooks/usePortfolioData';
 
 const ProjectsPage = () => {
-  const { data: projects, loading } = useProjects();
+  const { data: projects } = useProjects();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-light-bg dark:bg-dark-bg">
-        <div className="max-w-content mx-auto px-6 py-20">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
-            <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (!projects || projects.length === 0) {
-    return (
-      <div className="min-h-screen bg-light-bg dark:bg-dark-bg">
-        <div className="max-w-content mx-auto px-6 py-20">
-          <p>No projects found.</p>
-        </div>
-      </div>
-    );
-  }
-
   // Get unique categories
   const categories = useMemo(() => {
-    if (!projects || !Array.isArray(projects)) return ['all'];
-    const cats = new Set(projects.map(p => p?.category).filter(Boolean));
+    const cats = new Set(projects.map(p => p.category).filter(Boolean));
     return ['all', ...Array.from(cats)];
   }, [projects]);
 
   // Filter projects
   const filteredProjects = useMemo(() => {
-    if (!projects || !Array.isArray(projects)) return [];
-    
     return projects.filter(project => {
-      if (!project) return false;
-      
       const matchesSearch = 
-        (project.title?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
-        (project.description?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
-        (project.techStack && Array.isArray(project.techStack) && project.techStack.some(tech => 
-          (tech?.toLowerCase() || '').includes(searchQuery.toLowerCase())
-        ));
+        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.techStack.some(tech => 
+          tech.toLowerCase().includes(searchQuery.toLowerCase())
+        );
       
       const matchesCategory = 
         selectedCategory === 'all' || project.category === selectedCategory;
@@ -129,7 +101,7 @@ const ProjectsPage = () => {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project, index) => (
-            <ProjectCard key={project._id || project.id || index} project={project} index={index} />
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
 
@@ -156,8 +128,6 @@ const ProjectsPage = () => {
 };
 
 const ProjectCard = ({ project, index }) => {
-  if (!project) return null;
-  
   return (
     <article
       className="group relative p-6 rounded-2xl bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-accent-primary/50 transition-all duration-300 hover:shadow-medium dark:hover:shadow-dark-medium"
@@ -175,7 +145,7 @@ const ProjectCard = ({ project, index }) => {
         <div>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-xs font-medium text-accent-primary uppercase tracking-wider">
-              {project.year || '2024'}
+              {project.year}
             </span>
             {project.category && (
               <>
@@ -187,25 +157,25 @@ const ProjectCard = ({ project, index }) => {
             )}
           </div>
           <h3 className="text-xl font-semibold text-light-text dark:text-dark-text group-hover:text-accent-primary transition-colors">
-            {project.title || 'Untitled Project'}
+            {project.title}
           </h3>
         </div>
 
         <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary line-clamp-2">
-          {project.description || 'No description available'}
+          {project.description}
         </p>
 
         {/* Tech Stack */}
         <div className="flex flex-wrap gap-2">
-          {project.techStack && Array.isArray(project.techStack) ? project.techStack.slice(0, 4).map((tech) => (
+          {project.techStack.slice(0, 4).map((tech) => (
             <span
               key={tech}
               className="px-2.5 py-1 text-xs font-medium rounded-md bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text-secondary dark:text-dark-text-secondary"
             >
               {tech}
             </span>
-          )) : null}
-          {project.techStack && Array.isArray(project.techStack) && project.techStack.length > 4 && (
+          ))}
+          {project.techStack.length > 4 && (
             <span className="px-2.5 py-1 text-xs font-medium rounded-md bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text-muted dark:text-dark-text-muted">
               +{project.techStack.length - 4}
             </span>

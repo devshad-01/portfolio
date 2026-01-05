@@ -3,24 +3,7 @@ import { ArrowRight, ExternalLink, Github } from 'lucide-react';
 import { useFeaturedProjects } from '../../hooks/usePortfolioData';
 
 const FeaturedProjects = () => {
-  const { data: projects, loading } = useFeaturedProjects();
-
-  if (loading) {
-    return (
-      <section id="projects" className="py-section">
-        <div className="max-w-content mx-auto px-6">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
-            <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (!projects || projects.length === 0) {
-    return null;
-  }
+  const { data: projects } = useFeaturedProjects();
 
   return (
     <section id="projects" className="py-section">
@@ -49,8 +32,8 @@ const FeaturedProjects = () => {
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-6">
-          {projects && Array.isArray(projects) && projects.slice(0, 4).map((project, index) => (
-            <ProjectCard key={project._id || project.id || index} project={project} index={index} />
+          {projects.slice(0, 4).map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </div>
@@ -59,8 +42,6 @@ const FeaturedProjects = () => {
 };
 
 const ProjectCard = ({ project, index }) => {
-  if (!project) return null;
-  
   const isLarge = index === 0;
 
   return (
@@ -75,31 +56,31 @@ const ProjectCard = ({ project, index }) => {
       <div className={`relative p-6 ${isLarge ? 'md:p-8' : ''}`}>
         {/* Year badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary/10 text-accent-primary text-xs font-semibold mb-4">
-          {project.year || '2024'}
+          {project.year}
         </div>
 
         <h3 className={`font-bold text-light-text dark:text-dark-text group-hover:text-accent-primary transition-colors ${
           isLarge ? 'text-2xl' : 'text-xl'
         }`}>
-          {project.title || 'Untitled Project'}
+          {project.title}
         </h3>
 
         <p className={`text-light-text-secondary dark:text-dark-text-secondary mt-3 ${
           isLarge ? 'text-body-lg' : 'text-body'
         }`}>
-          {isLarge ? (project.longDescription || project.description) : project.description || 'No description available'}
+          {isLarge ? project.longDescription || project.description : project.description}
         </p>
 
         {/* Tech Stack */}
         <div className="flex flex-wrap gap-2 mt-6">
-          {project.techStack && Array.isArray(project.techStack) ? project.techStack.map((tech) => (
+          {project.techStack.map((tech) => (
             <span
               key={tech}
               className="px-3 py-1.5 text-xs font-medium rounded-lg bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text-secondary dark:text-dark-text-secondary border border-light-border dark:border-dark-border"
             >
               {tech}
             </span>
-          )) : null}
+          ))}
         </div>
 
         {/* Links */}

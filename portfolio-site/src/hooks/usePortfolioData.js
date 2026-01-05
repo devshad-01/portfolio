@@ -24,7 +24,7 @@ import {
  * Uses local data by default, switches to Sanity when configured
  */
 function useData(localData, sanityQuery, transform = (data) => data) {
-  const [data, setData] = useState(() => localData);
+  const [data, setData] = useState(localData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -34,38 +34,24 @@ function useData(localData, sanityQuery, transform = (data) => data) {
       sanityClient
         .fetch(sanityQuery)
         .then((result) => {
-          const transformed = transform(result);
-          setData(prevData => {
-            // Only update if data actually changed
-            if (JSON.stringify(prevData) !== JSON.stringify(transformed)) {
-              return transformed;
-            }
-            return prevData;
-          });
+          // If Sanity returns null or empty data, use local data
+          if (result === null || result === undefined || 
+              (Array.isArray(result) && result.length === 0)) {
+            console.log('Sanity returned empty - using local data');
+            setData(localData);
+          } else {
+            setData(transform(result));
+          }
           setLoading(false);
         })
         .catch((err) => {
           console.error('Sanity fetch error:', err);
           setError(err);
-          // Only fallback to local data if we don't have any data yet
-          setData(prevData => {
-            if (!prevData || prevData.length === 0) {
-              return localData;
-            }
-            return prevData;
-          });
+          setData(localData); // Fallback to local data
           setLoading(false);
         });
-    } else {
-      // Use local data when Sanity is not configured
-      setData(prevData => {
-        if (JSON.stringify(prevData) !== JSON.stringify(localData)) {
-          return localData;
-        }
-        return prevData;
-      });
     }
-  }, [sanityQuery, transform]); // Remove localData from deps to prevent re-renders
+  }, [sanityQuery, localData, transform]);
 
   return { data, loading, error };
 }

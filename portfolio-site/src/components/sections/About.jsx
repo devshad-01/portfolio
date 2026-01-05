@@ -1,25 +1,7 @@
 import { useAbout } from '../../hooks/usePortfolioData';
 
 const About = () => {
-  const { data: about, loading } = useAbout();
-
-  if (loading) {
-    return (
-      <section id="about" className="py-section">
-        <div className="max-w-content mx-auto px-6">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
-            <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
-            <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (!about) {
-    return null;
-  }
+  const { data: about } = useAbout();
 
   return (
     <section id="about" className="py-section">
@@ -49,7 +31,7 @@ const About = () => {
           <div className="lg:col-span-3 space-y-8">
             {/* Intro */}
             <p className="text-body-lg text-light-text dark:text-dark-text leading-relaxed">
-              {about.intro || "Loading introduction..."}
+              {about.intro}
             </p>
 
             {/* Journey */}
@@ -58,7 +40,7 @@ const About = () => {
                 My Journey
               </h3>
               <p className="text-body text-light-text-secondary dark:text-dark-text-secondary leading-relaxed">
-                {about.journey || "Loading journey..."}
+                {about.journey}
               </p>
             </div>
 
@@ -68,7 +50,7 @@ const About = () => {
                 What I'm Doing Now
               </h3>
               <p className="text-body text-light-text-secondary dark:text-dark-text-secondary leading-relaxed">
-                {about.current || "Loading current activities..."}
+                {about.current}
               </p>
             </div>
 
@@ -78,7 +60,7 @@ const About = () => {
                 Beyond Code
               </h3>
               <p className="text-body text-light-text-secondary dark:text-dark-text-secondary leading-relaxed">
-                {about.interests || "Loading interests..."}
+                {about.interests}
               </p>
             </div>
 

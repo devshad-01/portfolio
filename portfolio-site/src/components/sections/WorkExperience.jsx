@@ -3,30 +3,13 @@ import { useWorkExperience } from '../../hooks/usePortfolioData';
 import { contactInfo } from '../../data/portfolio';
 
 const WorkExperience = () => {
-  const { data: experiences, loading } = useWorkExperience();
+  const { data: experiences } = useWorkExperience();
 
   const formatDate = (dateStr) => {
     if (!dateStr) return 'Present';
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', { year: 'numeric' });
   };
-
-  if (loading) {
-    return (
-      <section className="py-section bg-light-bg-secondary dark:bg-dark-bg-secondary">
-        <div className="max-w-content mx-auto px-6">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
-            <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (!experiences || experiences.length === 0) {
-    return null;
-  }
 
   return (
     <section className="py-section bg-light-bg-secondary dark:bg-dark-bg-secondary">
