@@ -24,7 +24,7 @@ import {
  * Uses local data by default, switches to Sanity when configured
  */
 function useData(localData, sanityQuery, transform = (data) => data) {
-  const [data, setData] = useState(localData);
+  const [data, setData] = useState(() => localData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -34,17 +34,38 @@ function useData(localData, sanityQuery, transform = (data) => data) {
       sanityClient
         .fetch(sanityQuery)
         .then((result) => {
-          setData(transform(result));
+          const transformed = transform(result);
+          setData(prevData => {
+            // Only update if data actually changed
+            if (JSON.stringify(prevData) !== JSON.stringify(transformed)) {
+              return transformed;
+            }
+            return prevData;
+          });
           setLoading(false);
         })
         .catch((err) => {
           console.error('Sanity fetch error:', err);
           setError(err);
-          setData(localData); // Fallback to local data
+          // Only fallback to local data if we don't have any data yet
+          setData(prevData => {
+            if (!prevData || prevData.length === 0) {
+              return localData;
+            }
+            return prevData;
+          });
           setLoading(false);
         });
+    } else {
+      // Use local data when Sanity is not configured
+      setData(prevData => {
+        if (JSON.stringify(prevData) !== JSON.stringify(localData)) {
+          return localData;
+        }
+        return prevData;
+      });
     }
-  }, [sanityQuery, localData, transform]);
+  }, [sanityQuery, transform]); // Remove localData from deps to prevent re-renders
 
   return { data, loading, error };
 }
