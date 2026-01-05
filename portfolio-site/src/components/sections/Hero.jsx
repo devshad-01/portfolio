@@ -1,16 +1,32 @@
 import { Briefcase, Mail, Github, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAbout, useContact } from '../../hooks/usePortfolioData';
+import { urlFor } from '../../config/sanity';
 
 const Hero = () => {
   const { data: about } = useAbout();
   const { data: contact } = useContact();
+  
+  const avatarUrl = about?.avatar ? urlFor(about.avatar)?.url() : null;
   
   return (
     <section className="bg-accent-primary dark:bg-dark-bg py-12 md:py-20 relative overflow-hidden">
       {/* Decorative shapes */}
       <div className="absolute left-8 top-16 w-40 h-40 bg-nb-pink/30 rounded-full blur-3xl hidden lg:block" />
       <div className="absolute right-8 top-12 w-48 h-48 bg-nb-orange/30 rounded-full blur-3xl hidden lg:block" />
+      
+      {/* Background Avatar */}
+      {avatarUrl && (
+        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+          <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-white/20">
+            <img 
+              src={avatarUrl} 
+              alt={about?.name || 'Profile Background'} 
+              className="w-full h-full object-cover blur-sm"
+            />
+          </div>
+        </div>
+      )}
       
       <div className="max-w-narrow mx-auto px-6 relative z-10 text-center">
         {/* Status badge */}
