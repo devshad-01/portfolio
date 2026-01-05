@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'portfolio',
   title: 'Portfolio CMS',
 
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'your-project-id',
-  dataset: process.env.SANITY_STUDIO_DATASET || 'production',
+  projectId: import.meta.env.SANITY_STUDIO_PROJECT_ID || 'gf4pf40n',
+  dataset: import.meta.env.SANITY_STUDIO_DATASET || 'production',
 
   plugins: [
     structureTool(),

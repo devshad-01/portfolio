@@ -2,8 +2,8 @@ import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
   api: {
-    projectId: process.env.SANITY_STUDIO_PROJECT_ID,
-    dataset: process.env.SANITY_STUDIO_DATASET || 'production'
+    projectId: 'gf4pf40n',
+    dataset: 'production'
   },
-  studioHost: 'your-portfolio-studio' // Change this to your preferred studio hostname
+  studioHost: 'devshad-portfolio'
 })
