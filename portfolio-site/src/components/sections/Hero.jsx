@@ -107,11 +107,7 @@ const Hero = () => {
                 <img
                   src={avatarUrl}
                   alt={about?.name || 'Profile'}
-                  className="w-full h-full object-cover object-top"
-                  style={{
-                    maskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%)',
-                    WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 100%)'
-                  }}
+                  className="w-full h-full object-cover object-top border-4 border-nb-black"
                 />
               </div>
             </div>
