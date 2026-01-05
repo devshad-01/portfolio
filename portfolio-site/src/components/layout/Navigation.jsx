@@ -35,30 +35,30 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`sticky top-0 z-50 bg-accent-primary dark:bg-dark-bg border-b-4 border-nb-black py-4 transition-all duration-200`}>
-      <div className="max-w-content mx-auto px-6">
+    <nav className={`sticky top-0 z-50 bg-white dark:bg-dark-bg border-b-4 border-nb-black py-4`}>
+      <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo/Brand */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex items-center gap-3 bg-white px-4 py-2 border-3 border-nb-black rounded-full shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200">
-              <div className="w-8 h-8 bg-gradient-to-br from-accent-primary to-nb-blue-dark rounded-full flex items-center justify-center text-white font-black text-sm">
+            <div className="flex items-center gap-3 bg-white px-4 py-2 border-4 border-nb-black rounded-full shadow-brutal-sm">
+              <div className="w-8 h-8 bg-accent-primary rounded-full flex items-center justify-center text-white font-black text-sm">
                 SM
               </div>
               <div className="hidden sm:block">
-                <div className="font-black text-sm text-nb-black">Shadrack Mutinda</div>
-                <div className="text-xs text-gray-500">Software Engineer</div>
+                <div className="font-black text-sm text-nb-black dark:text-white">Shadrack Mutinda</div>
+                <div className="text-xs text-gray-500 dark:text-gray-300">Software Engineer</div>
               </div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.href}
-                className={`text-white font-bold hover:underline hover:decoration-4 hover:underline-offset-4 transition-all ${
-                  isActive(item.href) ? 'underline decoration-4 underline-offset-4' : ''
+                className={`text-nb-black dark:text-white font-bold hover:text-accent-primary transition-all ${
+                  isActive(item.href) ? 'underline decoration-4 underline-offset-4 text-accent-primary' : ''
                 }`}
               >
                 {item.label}
@@ -71,7 +71,7 @@ const Navigation = () => {
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="p-3 bg-white border-3 border-nb-black rounded-full shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
+              className="p-3 bg-white border-4 border-nb-black rounded-full shadow-brutal-sm"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -84,7 +84,7 @@ const Navigation = () => {
             {/* CTA Button */}
             <a
               href="#contact"
-              className="hidden md:inline-flex px-6 py-2 bg-white font-bold text-sm border-3 border-nb-blue-dark rounded-full hover:bg-blue-50 transition-colors"
+              className="hidden md:inline-flex px-6 py-2 bg-accent-primary text-white font-bold text-sm border-2 border-nb-black rounded-full hover:bg-accent-primary/90 transition-colors"
             >
               Get in Touch
             </a>

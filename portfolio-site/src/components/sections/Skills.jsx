@@ -17,7 +17,7 @@ const Skills = () => {
           <div className="w-16 h-16 flex items-center justify-center bg-nb-gray-dark dark:bg-dark-surface border-4 border-nb-black rounded-full shadow-brutal-sm">
             <Code className="w-7 h-7 text-white" />
           </div>
-          <h2 className="text-h1-mobile md:text-h1 font-black text-light-text dark:text-dark-text">
+          <h2 className="text-h1-mobile md:text-h1 font-black text-nb-black dark:text-white">
             Technical Skills
           </h2>
         </div>

@@ -7,11 +7,7 @@ const Hero = () => {
   const { data: about } = useAbout();
   const { data: contact } = useContact();
   
-  // Use Sanity avatar when available; otherwise use a local/dev fallback image
-  // (Unsplash) so you can preview locally without pushing to Sanity.
-  const sanityAvatar = about?.avatar ? urlFor(about.avatar)?.url() : null;
-  const fallbackAvatar = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1200&fit=crop';
-  const avatarUrl = sanityAvatar || fallbackAvatar;
+  const avatarUrl = about?.avatar ? urlFor(about.avatar)?.url() : null;
   
   return (
     <section className="bg-accent-primary dark:bg-dark-bg py-12 md:py-20 relative overflow-hidden min-h-[520px] md:min-h-[600px]">

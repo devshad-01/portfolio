@@ -56,7 +56,7 @@ const ProjectsPage = () => {
         <div className="mb-12">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white text-nb-black font-black uppercase text-sm border-4 border-nb-black rounded-full shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
+            className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white dark:bg-dark-surface text-nb-black dark:text-white font-black uppercase text-sm border-4 border-nb-black rounded-full shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
@@ -78,8 +78,8 @@ const ProjectsPage = () => {
         {/* Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-10">
           {/* Search */}
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-nb-black" />
+            <div className="relative flex-1 max-w-md">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-nb-black dark:text-white" />
             <input
               type="text"
               placeholder="Search projects or technologies..."
