@@ -4,9 +4,32 @@ import { Link } from 'react-router-dom';
 import { useProjects } from '../hooks/usePortfolioData';
 
 const ProjectsPage = () => {
-  const { data: projects } = useProjects();
+  const { data: projects, loading } = useProjects();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-light-bg dark:bg-dark-bg">
+        <div className="max-w-content mx-auto px-6 py-20">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
+            <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!projects || projects.length === 0) {
+    return (
+      <div className="min-h-screen bg-light-bg dark:bg-dark-bg">
+        <div className="max-w-content mx-auto px-6 py-20">
+          <p>No projects found.</p>
+        </div>
+      </div>
+    );
+  }
 
   // Get unique categories
   const categories = useMemo(() => {

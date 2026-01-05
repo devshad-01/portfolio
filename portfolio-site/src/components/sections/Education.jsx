@@ -2,13 +2,30 @@ import { GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
 import { useEducation } from '../../hooks/usePortfolioData';
 
 const Education = () => {
-  const { data: education } = useEducation();
+  const { data: education, loading } = useEducation();
 
   const formatDate = (dateStr) => {
     if (!dateStr) return 'Present';
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
   };
+
+  if (loading) {
+    return (
+      <section className="py-section">
+        <div className="max-w-content mx-auto px-6">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
+            <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!education || education.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-section">

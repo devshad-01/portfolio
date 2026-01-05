@@ -1,7 +1,7 @@
 import { useSkills } from '../../hooks/usePortfolioData';
 
 const Skills = () => {
-  const { data: skills } = useSkills();
+  const { data: skills, loading } = useSkills();
 
   const categoryColors = {
     'Backend': { bg: 'bg-blue-500/10', text: 'text-blue-500', border: 'border-blue-500/20' },
@@ -32,6 +32,23 @@ const Skills = () => {
       </svg>
     ),
   };
+
+  if (loading) {
+    return (
+      <section className="py-section bg-light-bg-secondary dark:bg-dark-bg-secondary">
+        <div className="max-w-content mx-auto px-6">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
+            <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!skills || skills.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-section bg-light-bg-secondary dark:bg-dark-bg-secondary">

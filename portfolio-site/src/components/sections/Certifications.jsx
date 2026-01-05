@@ -2,7 +2,7 @@ import { ExternalLink, Award, Calendar, ShieldCheck } from 'lucide-react';
 import { useCertifications } from '../../hooks/usePortfolioData';
 
 const Certifications = () => {
-  const { data: certifications } = useCertifications();
+  const { data: certifications, loading } = useCertifications();
 
   const formatDate = (dateStr) => {
     if (!dateStr) return null;
@@ -14,6 +14,23 @@ const Certifications = () => {
     if (!expiryDate) return false;
     return new Date(expiryDate) < new Date();
   };
+
+  if (loading) {
+    return (
+      <section className="py-section bg-light-bg-secondary dark:bg-dark-bg-secondary">
+        <div className="max-w-content mx-auto px-6">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
+            <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!certifications || certifications.length === 0) {
+    return null;
+  }
 
   // Icon mapping for known issuers
   const issuerIcons = {

@@ -3,7 +3,24 @@ import { ArrowRight, ExternalLink, Github } from 'lucide-react';
 import { useFeaturedProjects } from '../../hooks/usePortfolioData';
 
 const FeaturedProjects = () => {
-  const { data: projects } = useFeaturedProjects();
+  const { data: projects, loading } = useFeaturedProjects();
+
+  if (loading) {
+    return (
+      <section id="projects" className="py-section">
+        <div className="max-w-content mx-auto px-6">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-300 rounded w-1/4 mb-4"></div>
+            <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!projects || projects.length === 0) {
+    return null;
+  }
 
   return (
     <section id="projects" className="py-section">
