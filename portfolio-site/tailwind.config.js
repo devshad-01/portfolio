@@ -8,50 +8,76 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Light mode colors
-        light: {
-          bg: '#fafafa',
-          'bg-secondary': '#f0f0f0',
-          surface: '#ffffff',
-          text: '#1a1a2e',
-          'text-secondary': '#4a4a5a',
-          'text-muted': '#6b6b7b',
-          border: '#e2e2e8',
+        // New design palette from PortfolioDesign.json
+        mint: {
+          DEFAULT: '#6B9B8E',
+          light: '#8AB5A9',
+          dark: '#4A7A6D',
         },
-        // Dark mode colors (deep navy/slate, not pure black)
+        sage: {
+          DEFAULT: '#E8F0ED',
+          light: '#F5F9F7',
+          dark: '#D1DDD8',
+        },
+        charcoal: {
+          DEFAULT: '#2C3E50',
+          light: '#3D5166',
+          dark: '#1A252F',
+        },
+        amber: {
+          DEFAULT: '#F2B544',
+          light: '#F5C76A',
+          dark: '#D99F2D',
+        },
+        cream: {
+          DEFAULT: '#FAF9F6',
+          dark: '#F0EDE6',
+        },
+        // Dark mode colors (maintaining dark theme)
         dark: {
-          bg: '#0f172a',           // Deep navy
-          'bg-secondary': '#1e293b', // Slate 800
-          surface: '#1e293b',       // Card backgrounds
-          'surface-hover': '#334155', // Hover state
-          text: '#f1f5f9',          // Slate 100
-          'text-secondary': '#cbd5e1', // Slate 300
-          'text-muted': '#94a3b8',  // Slate 400
-          border: '#334155',        // Slate 700
+          bg: '#0a0f1a',            // Deep dark
+          'bg-secondary': '#111827', // Darker surface
+          surface: '#1a2332',        // Card backgrounds
+          'surface-hover': '#243044', // Hover state
+          text: '#f1f5f9',           // Light text
+          'text-secondary': '#cbd5e1', // Muted text
+          'text-muted': '#94a3b8',   // More muted
+          border: '#2d3a4f',         // Border color
         },
-        // Accent colors - vibrant blue theme
+        // Light mode colors (from design JSON)
+        light: {
+          bg: '#FAF9F6',             // Cream
+          'bg-secondary': '#E8F0ED', // Sage
+          surface: '#ffffff',
+          text: '#2C3E50',           // Charcoal
+          'text-secondary': '#4A5568',
+          'text-muted': '#718096',
+          border: '#D1DDD8',
+        },
+        // Accent colors - mint/amber theme
         accent: {
-          primary: '#3b82f6',       // Blue 500
-          'primary-hover': '#2563eb', // Blue 600
-          secondary: '#06b6d4',     // Cyan 500
+          primary: '#6B9B8E',        // Mint
+          'primary-hover': '#4A7A6D', // Mint dark
+          secondary: '#F2B544',       // Amber
+          'secondary-hover': '#D99F2D', // Amber dark
           gradient: {
-            from: '#3b82f6',
-            via: '#8b5cf6',         // Violet
-            to: '#06b6d4',          // Cyan
+            from: '#6B9B8E',
+            via: '#8AB5A9',
+            to: '#F2B544',
           }
         },
         // Status colors
         status: {
-          success: '#10b981',
-          warning: '#f59e0b',
-          error: '#ef4444',
-          info: '#3b82f6',
+          success: '#6B9B8E',        // Mint
+          warning: '#F2B544',        // Amber
+          error: '#E57373',
+          info: '#64B5F6',
         },
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        display: ['DM Sans', 'Inter', '-apple-system', 'sans-serif'],
+        mono: ['Space Grotesk', 'JetBrains Mono', 'monospace'],
       },
       fontSize: {
         'hero': ['4rem', { lineHeight: '1.05', fontWeight: '800', letterSpacing: '-0.02em' }],

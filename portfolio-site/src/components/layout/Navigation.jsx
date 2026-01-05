@@ -49,11 +49,11 @@ const Navigation = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="text-lg font-bold text-light-text dark:text-dark-text hover:text-accent-primary dark:hover:text-accent-primary transition-colors"
+            className="text-lg font-bold font-display text-light-text dark:text-dark-text hover:text-mint dark:hover:text-mint transition-colors"
           >
-            <span className="text-accent-primary">{'<'}</span>
+            <span className="text-mint">{'<'}</span>
             Shad
-            <span className="text-accent-primary">{' />'}</span>
+            <span className="text-mint">{' />'}</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -64,7 +64,7 @@ const Navigation = () => {
                 to={item.href}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive(item.href)
-                    ? 'text-accent-primary bg-accent-primary/10'
+                    ? 'text-mint bg-mint/10'
                     : 'text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text dark:hover:text-dark-text hover:bg-light-bg-secondary/50 dark:hover:bg-dark-surface-hover/50'
                 }`}
               >
@@ -80,7 +80,7 @@ const Navigation = () => {
               href={contactInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary hover:text-accent-primary hover:bg-accent-primary/10 transition-all duration-200"
+              className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary hover:text-mint hover:bg-mint/10 transition-all duration-200"
             >
               <Linkedin className="w-4 h-4" />
             </a>
@@ -88,7 +88,7 @@ const Navigation = () => {
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-lg bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text dark:text-dark-text hover:bg-light-border dark:hover:bg-dark-border transition-all duration-200"
+              className="p-2.5 rounded-lg bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text dark:text-dark-text hover:bg-mint/10 hover:text-mint transition-all duration-200"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -126,7 +126,7 @@ const Navigation = () => {
                 to={item.href}
                 className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive(item.href)
-                    ? 'text-accent-primary bg-accent-primary/10'
+                    ? 'text-mint bg-mint/10'
                     : 'text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text dark:hover:text-dark-text hover:bg-light-bg-secondary dark:hover:bg-dark-surface-hover'
                 }`}
               >

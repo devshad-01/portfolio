@@ -36,7 +36,17 @@ const builder = imageUrlBuilder(sanityClient);
 
 export function urlFor(source) {
   if (!source) return null;
-  return builder.image(source);
+  // If source is already a URL string, return it as-is
+  if (typeof source === 'string') {
+    return { url: () => source };
+  }
+  // Handle Sanity image reference
+  try {
+    return builder.image(source);
+  } catch (e) {
+    console.error('urlFor error:', e);
+    return null;
+  }
 }
 
 /**

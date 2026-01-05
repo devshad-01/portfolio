@@ -2,12 +2,10 @@
  * Custom hooks for fetching portfolio data
  * 
  * These hooks provide a clean interface for data fetching.
- * Currently uses local data, but can be switched to Sanity by:
- * 1. Configuring Sanity in src/config/sanity.js
- * 2. Uncommenting the Sanity fetch logic below
+ * Uses Sanity when configured, falls back to local data.
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { isSanityConfigured, sanityClient, queries } from '../config/sanity';
 import { 
   projectsData, 
@@ -20,27 +18,33 @@ import {
 } from '../data/portfolio';
 
 /**
- * Generic data fetcher hook
- * Uses local data by default, switches to Sanity when configured
+ * Generic data fetcher hook - FIXED to prevent glitching
+ * Only shows local data initially, then switches to Sanity data once loaded
  */
 function useData(localData, sanityQuery, transform = (data) => data) {
-  const [data, setData] = useState(localData);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null); // Start with null to show loading
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const hasFetched = useRef(false);
+  const transformRef = useRef(transform);
+  transformRef.current = transform;
 
   useEffect(() => {
+    // Only fetch once
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
     if (isSanityConfigured()) {
-      setLoading(true);
       sanityClient
         .fetch(sanityQuery)
         .then((result) => {
-          // If Sanity returns null or empty data, use local data
+          // If Sanity returns null or empty, use local data
           if (result === null || result === undefined || 
-              (Array.isArray(result) && result.length === 0)) {
-            console.log('Sanity returned empty - using local data');
+              (Array.isArray(result) && result.length === 0) ||
+              (typeof result === 'object' && !Array.isArray(result) && Object.keys(result).length === 0)) {
             setData(localData);
           } else {
-            setData(transform(result));
+            setData(transformRef.current(result));
           }
           setLoading(false);
         })
@@ -50,10 +54,20 @@ function useData(localData, sanityQuery, transform = (data) => data) {
           setData(localData); // Fallback to local data
           setLoading(false);
         });
+    } else {
+      // No Sanity configured, use local data immediately
+      setData(localData);
+      setLoading(false);
     }
-  }, [sanityQuery, localData, transform]);
+  }, [sanityQuery, localData]);
 
-  return { data, loading, error };
+  // Return local data while loading to prevent blank screens
+  return { 
+    data: data ?? localData, 
+    loading, 
+    error,
+    isFromSanity: data !== null && data !== localData
+  };
 }
 
 /**
@@ -132,7 +146,19 @@ export function useSkills() {
  * Fetch about/profile information
  */
 export function useAbout() {
-  return useData(aboutData, queries.profile);
+  return useData(aboutData, queries.profile, (data) => {
+    if (!data) return aboutData;
+    return {
+      name: data.name || aboutData.name,
+      title: data.title || aboutData.title,
+      intro: data.intro || data.bio || aboutData.intro,
+      journey: data.journey || aboutData.journey,
+      current: data.current || aboutData.current,
+      interests: data.interests || aboutData.interests,
+      avatar: data.avatar || aboutData.avatar,
+      resume: data.resume || aboutData.resume,
+    };
+  });
 }
 
 /**

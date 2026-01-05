@@ -27,11 +27,11 @@ const Footer = () => {
           <div className="space-y-4">
             <Link
               to="/"
-              className="inline-block text-xl font-bold text-light-text dark:text-dark-text"
+              className="inline-block text-xl font-bold font-display text-light-text dark:text-dark-text"
             >
-              <span className="text-accent-primary">{'<'}</span>
+              <span className="text-mint">{'<'}</span>
               Shad
-              <span className="text-accent-primary">{' />'}</span>
+              <span className="text-mint">{' />'}</span>
             </Link>
             <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary max-w-xs">
               {siteConfig.description}. Let's build something amazing together.
@@ -40,7 +40,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-light-text dark:text-dark-text uppercase tracking-wider">
+            <h4 className="text-sm font-semibold font-display text-light-text dark:text-dark-text uppercase tracking-wider">
               Quick Links
             </h4>
             <nav className="flex flex-col gap-2">
@@ -48,7 +48,7 @@ const Footer = () => {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className="text-sm text-light-text-secondary dark:text-dark-text-secondary hover:text-accent-primary transition-colors"
+                  className="text-sm text-light-text-secondary dark:text-dark-text-secondary hover:text-mint transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -58,7 +58,7 @@ const Footer = () => {
 
           {/* Connect */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-light-text dark:text-dark-text uppercase tracking-wider">
+            <h4 className="text-sm font-semibold font-display text-light-text dark:text-dark-text uppercase tracking-wider">
               Connect
             </h4>
             <div className="flex gap-3">
@@ -68,7 +68,7 @@ const Footer = () => {
                   href={social.href}
                   target={social.href.startsWith('mailto') ? undefined : '_blank'}
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text-secondary dark:text-dark-text-secondary hover:text-accent-primary hover:bg-accent-primary/10 transition-all duration-200"
+                  className="p-2.5 rounded-lg bg-light-bg-secondary dark:bg-dark-surface-hover text-light-text-secondary dark:text-dark-text-secondary hover:text-mint hover:bg-mint/10 transition-all duration-200"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -87,7 +87,7 @@ const Footer = () => {
             © {currentYear} {siteConfig.name}. All rights reserved.
           </p>
           <p className="text-sm text-light-text-muted dark:text-dark-text-muted flex items-center gap-1">
-            Built with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> using React & Tailwind
+            Built with <Heart className="w-4 h-4 text-amber fill-amber" /> using React & Tailwind
           </p>
         </div>
       </div>

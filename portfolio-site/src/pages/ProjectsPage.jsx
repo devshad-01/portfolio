@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { ExternalLink, Github, Search, Filter, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useProjects } from '../hooks/usePortfolioData';
+import { urlFor } from '../config/sanity';
 
 const ProjectsPage = () => {
   const { data: projects } = useProjects();
@@ -55,13 +56,13 @@ const ProjectsPage = () => {
         <div className="mb-12">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm text-light-text-secondary dark:text-dark-text-secondary hover:text-accent-primary transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-sm text-light-text-secondary dark:text-dark-text-secondary hover:text-mint transition-colors mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
           
-          <h1 className="text-h1-mobile md:text-h1 font-bold text-light-text dark:text-dark-text mb-4">
+          <h1 className="text-h1-mobile md:text-h1 font-bold font-display text-light-text dark:text-dark-text mb-4">
             All Projects
           </h1>
           <p className="text-body-lg text-light-text-secondary dark:text-dark-text-secondary max-w-2xl">
@@ -80,7 +81,7 @@ const ProjectsPage = () => {
               placeholder="Search projects or technologies..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder:text-light-text-muted dark:placeholder:text-dark-text-muted focus:outline-none focus:ring-2 focus:ring-accent-primary/30 focus:border-accent-primary transition-all"
+              className="w-full pl-12 pr-4 py-3 rounded-xl bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder:text-light-text-muted dark:placeholder:text-dark-text-muted focus:outline-none focus:ring-2 focus:ring-mint/30 focus:border-mint transition-all"
             />
           </div>
 
@@ -93,7 +94,7 @@ const ProjectsPage = () => {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   selectedCategory === cat
-                    ? 'bg-accent-primary text-white'
+                    ? 'bg-mint text-white'
                     : 'bg-light-surface dark:bg-dark-surface text-light-text-secondary dark:text-dark-text-secondary hover:bg-light-bg-secondary dark:hover:bg-dark-surface-hover border border-light-border dark:border-dark-border'
                 }`}
               >
@@ -121,7 +122,7 @@ const ProjectsPage = () => {
                 setSearchQuery('');
                 setSelectedCategory('all');
               }}
-              className="text-accent-primary hover:underline"
+              className="text-mint hover:underline"
             >
               Clear filters
             </button>
@@ -135,23 +136,50 @@ const ProjectsPage = () => {
 const ProjectCard = ({ project, index }) => {
   if (!project) return null;
   
+  // Get image URL - handle both Sanity and local images
+  const getImageUrl = () => {
+    if (!project.thumbnail) return null;
+    // If it's already a URL string, use it directly
+    if (typeof project.thumbnail === 'string') return project.thumbnail;
+    // If it's a Sanity image object, use urlFor
+    if (project.thumbnail?.asset) {
+      const url = urlFor(project.thumbnail);
+      return url?.url?.() || null;
+    }
+    return null;
+  };
+  
+  const imageUrl = getImageUrl();
+  
   return (
     <article
-      className="group relative p-6 rounded-2xl bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-accent-primary/50 transition-all duration-300 hover:shadow-medium dark:hover:shadow-dark-medium"
+      className="group relative rounded-2xl overflow-hidden bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-mint/50 transition-all duration-300 hover:shadow-medium dark:hover:shadow-dark-medium"
       style={{ animationDelay: `${index * 50}ms` }}
     >
+      {/* Project Image */}
+      {imageUrl && (
+        <div className="relative h-48 overflow-hidden">
+          <img 
+            src={imageUrl} 
+            alt={project.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-light-surface dark:from-dark-surface via-transparent to-transparent" />
+        </div>
+      )}
+      
       {/* Featured Badge */}
       {project.featured && (
-        <div className="absolute -top-2 -right-2 px-3 py-1 rounded-full bg-accent-primary text-white text-xs font-semibold">
+        <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-amber text-charcoal text-xs font-semibold">
           Featured
         </div>
       )}
 
       {/* Content */}
-      <div className="space-y-4">
+      <div className="p-6 space-y-4">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-medium text-accent-primary uppercase tracking-wider">
+            <span className="text-xs font-medium font-mono text-mint uppercase tracking-wider">
               {project.year || '2024'}
             </span>
             {project.category && (
@@ -163,7 +191,7 @@ const ProjectCard = ({ project, index }) => {
               </>
             )}
           </div>
-          <h3 className="text-xl font-semibold text-light-text dark:text-dark-text group-hover:text-accent-primary transition-colors">
+          <h3 className="text-xl font-semibold font-display text-light-text dark:text-dark-text group-hover:text-mint transition-colors">
             {project.title || 'Untitled Project'}
           </h3>
         </div>
@@ -205,7 +233,7 @@ const ProjectCard = ({ project, index }) => {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-primary hover:underline"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-mint hover:underline"
             >
               <ExternalLink className="w-4 h-4" />
               Live Demo
@@ -216,7 +244,7 @@ const ProjectCard = ({ project, index }) => {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary hover:text-accent-primary transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-light-text-secondary dark:text-dark-text-secondary hover:text-mint transition-colors"
             >
               <Github className="w-4 h-4" />
               Source Code

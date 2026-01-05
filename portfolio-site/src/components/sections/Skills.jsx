@@ -4,10 +4,10 @@ const Skills = () => {
   const { data: skills } = useSkills();
 
   const categoryColors = {
-    'Backend': { bg: 'bg-blue-500/10', text: 'text-blue-500', border: 'border-blue-500/20' },
-    'Frontend': { bg: 'bg-violet-500/10', text: 'text-violet-500', border: 'border-violet-500/20' },
-    'DevOps & Cloud': { bg: 'bg-orange-500/10', text: 'text-orange-500', border: 'border-orange-500/20' },
-    'Databases': { bg: 'bg-emerald-500/10', text: 'text-emerald-500', border: 'border-emerald-500/20' },
+    'Backend': { bg: 'bg-mint/10', text: 'text-mint', border: 'border-mint/20' },
+    'Frontend': { bg: 'bg-amber/10', text: 'text-amber', border: 'border-amber/20' },
+    'DevOps & Cloud': { bg: 'bg-mint-light/10', text: 'text-mint-light', border: 'border-mint-light/20' },
+    'Databases': { bg: 'bg-charcoal-light/10', text: 'text-charcoal dark:text-sage', border: 'border-charcoal/20 dark:border-sage/20' },
   };
 
   const categoryIcons = {
@@ -38,10 +38,10 @@ const Skills = () => {
       <div className="max-w-content mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-sm font-medium text-accent-primary uppercase tracking-wider">
+          <span className="text-sm font-medium text-mint uppercase tracking-wider font-mono">
             Technical Expertise
           </span>
-          <h2 className="text-h1-mobile md:text-h1 font-bold text-light-text dark:text-dark-text mt-2">
+          <h2 className="text-h1-mobile md:text-h1 font-bold font-display text-light-text dark:text-dark-text mt-2">
             Skills & Technologies
           </h2>
           <p className="text-body text-light-text-secondary dark:text-dark-text-secondary mt-3 max-w-xl mx-auto">
@@ -52,20 +52,20 @@ const Skills = () => {
         {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {Object.entries(skills).map(([category, skillList]) => {
-            const colors = categoryColors[category] || { bg: 'bg-gray-500/10', text: 'text-gray-500', border: 'border-gray-500/20' };
+            const colors = categoryColors[category] || { bg: 'bg-mint/10', text: 'text-mint', border: 'border-mint/20' };
             const icon = categoryIcons[category];
             
             return (
               <div
                 key={category}
-                className="group p-6 rounded-2xl bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-accent-primary/30 transition-all duration-300"
+                className="group p-6 rounded-2xl bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-mint/30 transition-all duration-300"
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-5">
                   <div className={`p-2.5 rounded-xl ${colors.bg} ${colors.text}`}>
                     {icon}
                   </div>
-                  <h3 className="font-semibold text-light-text dark:text-dark-text">
+                  <h3 className="font-semibold font-display text-light-text dark:text-dark-text">
                     {category}
                   </h3>
                 </div>
@@ -75,7 +75,7 @@ const Skills = () => {
                   {skillList.map((skill) => (
                     <span
                       key={skill}
-                      className={`px-3 py-1.5 text-sm font-medium rounded-lg ${colors.bg} ${colors.text} ${colors.border} border transition-all duration-200 hover:scale-105`}
+                      className={`px-3 py-1.5 text-sm font-medium font-mono rounded-lg ${colors.bg} ${colors.text} ${colors.border} border transition-all duration-200 hover:scale-105`}
                     >
                       {skill}
                     </span>
