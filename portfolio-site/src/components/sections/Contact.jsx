@@ -18,30 +18,28 @@ const Contact = () => {
         </div>
 
         <p className="text-xl font-bold text-gray-300 mb-10">
-          Open to discussing new opportunities, collaborations, and consulting projects.
+          I'm always interested in collaborating on innovative projects and exploring new opportunities.
         </p>
 
         {/* Contact Buttons */}
         <div className="flex flex-wrap justify-center gap-4">
           <a
-            href={`mailto:${contact.email}`}
+            href="mailto:mutinda.shadrack20@gmail.com"
             className="inline-flex items-center gap-3 px-8 py-4 bg-white text-nb-black font-black uppercase border-4 border-nb-black rounded-full shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
           >
             <Mail className="w-5 h-5" />
             Email Me
           </a>
           
-          {contact.linkedin && (
-            <a
-              href={contact.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-accent-primary text-white font-black uppercase border-4 border-accent-primary rounded-full shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
-            >
-              <Linkedin className="w-5 h-5" />
-              LinkedIn
-            </a>
-          )}
+          <a
+            href="https://www.linkedin.com/in/shadrackmutinda/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-accent-primary text-white font-black uppercase border-4 border-accent-primary rounded-full shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
+          >
+            <Linkedin className="w-5 h-5" />
+            LinkedIn
+          </a>
         </div>
 
         {/* Availability Status */}

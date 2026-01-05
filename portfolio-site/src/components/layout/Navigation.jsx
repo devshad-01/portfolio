@@ -40,7 +40,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           {/* Logo/Brand */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex items-center gap-3 bg-white px-4 py-2 border-4 border-nb-black rounded-full shadow-brutal-sm">
+            <div className="flex items-center gap-3 bg-white dark:bg-dark-surface px-4 py-2 border-4 border-nb-black rounded-full shadow-brutal-sm">
               <div className="w-8 h-8 bg-accent-primary rounded-full flex items-center justify-center text-white font-black text-sm">
                 SM
               </div>
