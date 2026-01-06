@@ -123,12 +123,11 @@ const Hero = () => {
                 <div className="relative border-4 border-nb-black rounded-2xl overflow-hidden bg-white shadow-brutal">
                   <PixelImage
                     src={avatarUrl}
-                    customGrid={{ rows: 12, cols: 12 }}
-                    grayscaleAnimation={true}
-                    pixelFadeInDuration={600}
-                    maxAnimationDelay={800}
-                    colorRevealDelay={1000}
-                    className="w-full h-auto object-cover [&>div]:!rounded-none"
+                    grid="8x8"
+                    grayscaleAnimation
+                    pixelFadeInDuration={1000}
+                    maxAnimationDelay={1200}
+                    colorRevealDelay={1500}
                   />
                 </div>
               </div>
