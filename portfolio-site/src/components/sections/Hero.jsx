@@ -54,31 +54,10 @@ const Hero = () => {
               {about?.intro || 'Experienced full-stack developer specializing in scalable web applications, cloud architecture, and enterprise solutions.'}
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/projects"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-nb-black text-white font-black uppercase border-4 border-nb-black rounded-full shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
-              >
-                <Briefcase className="w-5 h-5" />
-                <span>View Projects</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-              </Link>
-              
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-nb-black font-black uppercase border-4 border-nb-black rounded-full shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
-              >
-                <Mail className="w-5 h-5" />
-                <span>Get in Touch</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-              </a>
-            </div>
-
             {/* Social Links */}
             <div className="flex gap-4 pt-4">
               {[
-                { icon: Github, href: contact?.github, label: 'GitHub' },
+                { icon: Github, href: 'https://github.com/devshad-01', label: 'GitHub', showText: true, text: '@devshad-01', isSignature: true },
                 { icon: Linkedin, href: contact?.linkedin, label: 'LinkedIn' },
                 { icon: Mail, href: contact?.email ? `mailto:${contact.email}` : '', label: 'Email' }
               ].map((social) => (
@@ -88,10 +67,17 @@ const Hero = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 flex items-center justify-center bg-white border-4 border-nb-black rounded-full shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200"
+                    className={`flex items-center justify-center rounded-full shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-press transition-all duration-200 ${
+                      social.showText 
+                        ? 'px-6 py-3 gap-2 bg-[#b5ff6d] border-4 border-[#b5ff6d]' 
+                        : 'w-14 h-14 bg-white border-4 border-nb-black'
+                    }`}
                     aria-label={social.label}
                   >
-                    <social.icon className="w-6 h-6 text-nb-black" />
+                    <social.icon className={`w-5 h-5 ${social.showText ? 'text-nb-black' : 'text-nb-black'}`} />
+                    {social.showText && (
+                      <span className="text-sm font-black text-nb-black">{social.text}</span>
+                    )}
                   </a>
                 )
               ))}
