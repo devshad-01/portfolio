@@ -128,7 +128,7 @@ const Hero = () => {
                     pixelFadeInDuration={1000}
                     maxAnimationDelay={1200}
                     colorRevealDelay={1500}
-                    className="scale-125 transform"
+                    className="scale-[1.8] transform"
                   />
                 </div>
               </div>
