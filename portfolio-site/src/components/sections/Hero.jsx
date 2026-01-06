@@ -44,7 +44,7 @@ const Hero = () => {
                 {about?.name || 'Shadrack Mutinda'}
               </h1>
               
-              <h2 className="text-2xl sm:text-3xl font-black text-nb-pink">
+              <h2 className="text-2xl sm:text-3xl font-black text-[#b5ff6d]">
                 {about?.title || 'Senior Software Engineer'}
               </h2>
             </div>
