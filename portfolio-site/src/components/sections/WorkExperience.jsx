@@ -12,7 +12,7 @@ const WorkExperience = () => {
   };
 
   return (
-    <section className="py-section bg-light-bg-secondary dark:bg-dark-bg-secondary">
+    <section className="pb-section bg-light-bg-secondary dark:bg-dark-bg-secondary">
       <div className="max-w-content mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Work Experience */}

@@ -20,7 +20,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative bg-nb-blue overflow-hidden py-section">
+    <section className="relative bg-nb-blue overflow-hidden pt-section">
       {/* Brutalist background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 bg-nb-pink rounded-full blur-3xl" />
@@ -44,7 +44,7 @@ const Hero = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           
           {/* Content */}
           <div className="space-y-8" data-aos="fade-up">
