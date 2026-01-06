@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
+import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -68,18 +69,8 @@ const Navigation = () => {
 
           {/* Right side actions */}
           <div className="flex items-center gap-3">
-            {/* Theme toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-3 bg-white border-4 border-nb-black rounded-full shadow-brutal-sm"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5 text-nb-black" />
-              ) : (
-                <Moon className="w-5 h-5 text-nb-black" />
-              )}
-            </button>
+            {/* Animated Theme toggle */}
+            <AnimatedThemeToggler />
 
             {/* CTA Button */}
             <a

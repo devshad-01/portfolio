@@ -115,19 +115,16 @@ const WorkExperience = () => {
 const FeaturedProjectsList = () => {
   const featuredProjects = [
     {
-      icon: '📋',
       title: 'HMS',
       description: 'Hospital management application...',
       tech: ['React', 'Spring Boot', 'Docker']
     },
     {
-      icon: '🛡️',
       title: 'SafeLife',
       description: 'Urban security application...',
       tech: ['Next', 'Laravel', 'MySQL']
     },
     {
-      icon: '💼',
       title: 'Pro Sales',
       description: 'Commercial management application...',
       tech: ['React', 'Node', 'PostgreSql', 'Mongo']
@@ -141,17 +138,13 @@ const FeaturedProjectsList = () => {
           key={project.title}
           className="group p-4 rounded-xl bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-accent-primary/50 transition-all duration-200"
         >
-          <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-light-bg-secondary dark:bg-dark-surface-hover text-2xl">
-              {project.icon}
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-light-text dark:text-dark-text group-hover:text-accent-primary transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-sm text-light-text-muted dark:text-dark-text-muted mb-3">
-                {project.description}
-              </p>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-light-text dark:text-dark-text group-hover:text-accent-primary transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-sm text-light-text-muted dark:text-dark-text-muted mb-3">
+              {project.description}
+            </p>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((tech) => (
                   <span
@@ -164,7 +157,6 @@ const FeaturedProjectsList = () => {
                 ))}
               </div>
             </div>
-          </div>
         </div>
       ))}
     </div>

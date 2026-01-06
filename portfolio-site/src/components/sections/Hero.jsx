@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { useAbout, useContact } from '../../hooks/usePortfolioData';
 import { urlFor } from '../../config/sanity';
 import { useEffect, useState } from 'react';
+import { DotPattern } from '@/components/ui/dot-pattern';
+import { cn } from '@/lib/utils';
+import { Highlighter } from '@/components/ui/highlighter';
 
 const Hero = () => {
   const { data: about } = useAbout();
@@ -22,6 +25,21 @@ const Hero = () => {
         <div className="absolute top-20 left-20 w-32 h-32 bg-nb-pink rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-20 w-40 h-40 bg-nb-orange rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-nb-cyan rounded-full blur-3xl" />
+      </div>
+
+      {/* Dot Pattern Overlay */}
+      <div className="absolute inset-0">
+        <DotPattern
+          width={40}
+          height={40}
+          cx={1.5}
+          cy={1.5}
+          cr={1.5}
+          className={cn(
+            "fill-white/10",
+            "[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]"
+          )}
+        />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +69,19 @@ const Hero = () => {
 
             {/* Description */}
             <p className="text-xl font-bold text-white leading-relaxed max-w-xl">
-              {about?.intro || 'Experienced full-stack developer specializing in scalable web applications, cloud architecture, and enterprise solutions.'}
+              Experienced{' '}
+              <Highlighter action="highlight" color="#ec4899" strokeWidth={1} padding={1}>
+                full-stack developer
+              </Highlighter>{' '}
+              specializing in{' '}
+              <Highlighter action="underline" color="#f97316" strokeWidth={1} padding={1}>
+                scalable web applications
+              </Highlighter>
+              ,{' '}
+              <Highlighter action="highlight" color="#06b6d4" strokeWidth={1} padding={1}>
+                cloud architecture
+              </Highlighter>
+              , and enterprise solutions.
             </p>
 
             {/* Social Links */}
