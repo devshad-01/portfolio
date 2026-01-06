@@ -44,10 +44,10 @@ const Hero = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-center lg:justify-between gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           
           {/* Content */}
-          <div className="space-y-8 max-w-2xl" data-aos="fade-up">
+          <div className="space-y-8" data-aos="fade-up">
             
             {/* Status badge */}
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-white border-4 border-nb-black rounded-full shadow-brutal">
