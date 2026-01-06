@@ -118,16 +118,17 @@ const Hero = () => {
           {/* Avatar */}
           {avatarUrl && (
             <div className="relative flex justify-center lg:justify-end" data-aos="fade-left">
-              <div className="relative w-full max-w-md h-80 md:h-96">
+              <div className="relative w-full max-w-md">
                 {/* Image */}
-                <div className="relative border-4 border-nb-black rounded-2xl overflow-hidden bg-white shadow-brutal h-full">
+                <div className="relative border-4 border-nb-black rounded-2xl overflow-hidden bg-white shadow-brutal">
                   <PixelImage
                     src={avatarUrl}
-                    grid="6x4"
+                    customGrid={{ rows: 12, cols: 12 }}
                     grayscaleAnimation={true}
                     pixelFadeInDuration={600}
                     maxAnimationDelay={800}
                     colorRevealDelay={1000}
+                    className="w-full h-auto object-cover [&>div]:!rounded-none"
                   />
                 </div>
               </div>
