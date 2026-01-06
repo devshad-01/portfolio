@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { DotPattern } from '@/components/ui/dot-pattern';
 import { cn } from '@/lib/utils';
 import { Highlighter } from '@/components/ui/highlighter';
+import { PixelImage } from '@/components/ui/pixel-image';
 
 const Hero = () => {
   const { data: about } = useAbout();
@@ -120,11 +121,14 @@ const Hero = () => {
               <div className="relative w-full max-w-md">
                 {/* Image */}
                 <div className="relative border-4 border-nb-black rounded-2xl overflow-hidden bg-white shadow-brutal">
-                  <img
+                  <PixelImage
                     src={avatarUrl}
-                    alt={about?.name || 'Profile'}
+                    grid="8x8"
+                    grayscaleAnimation={true}
+                    pixelFadeInDuration={800}
+                    maxAnimationDelay={1000}
+                    colorRevealDelay={1200}
                     className="w-full h-auto object-cover"
-                    loading="eager"
                   />
                 </div>
               </div>
