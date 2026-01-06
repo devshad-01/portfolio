@@ -117,10 +117,10 @@ const Hero = () => {
 
           {/* Avatar */}
           {avatarUrl && (
-            <div className="relative flex justify-center lg:justify-end" data-aos="fade-left">
-              <div className="relative w-full max-w-md">
+            <div className="relative flex justify-center lg:justify-start lg:absolute lg:right-0 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:z-10" data-aos="fade-left">
+              <div className="relative w-full max-w-md lg:max-w-lg">
                 {/* Image */}
-                <div className="relative border-4 border-nb-black rounded-2xl overflow-hidden bg-white shadow-brutal">
+                <div className="relative rounded-2xl overflow-hidden shadow-brutal">
                   <PixelImage
                     src={avatarUrl}
                     grid="8x8"
@@ -128,6 +128,7 @@ const Hero = () => {
                     pixelFadeInDuration={1000}
                     maxAnimationDelay={1200}
                     colorRevealDelay={1500}
+                    className="scale-110 transform"
                   />
                 </div>
               </div>
