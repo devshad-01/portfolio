@@ -7,6 +7,7 @@ import { DotPattern } from '@/components/ui/dot-pattern';
 import { cn } from '@/lib/utils';
 import { Highlighter } from '@/components/ui/highlighter';
 import { PixelImage } from '@/components/ui/pixel-image';
+import heroBg from '../../assets/hero-image-back.svg';
 
 const Hero = () => {
   const { data: about } = useAbout();
@@ -118,7 +119,15 @@ const Hero = () => {
           {/* Avatar */}
           {avatarUrl && (
             <div className="relative flex justify-end lg:-mr-6 h-full" data-aos="fade-left">
-              <div className="relative w-full lg:w-[650px] h-[500px] lg:h-[650px]">
+              <div 
+                className="relative w-full lg:w-[650px] h-[500px] lg:h-[650px]"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(heroBg)}")`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              >
                 {/* Image */}
                 <PixelImage
                   src={avatarUrl}
