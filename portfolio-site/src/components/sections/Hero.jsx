@@ -117,13 +117,16 @@ const Hero = () => {
 
           {/* Avatar */}
           {avatarUrl && (
-            <div className="relative flex justify-center lg:justify-end h-full" data-aos="fade-left">
+            <div className="relative flex justify-end lg:-mr-6 h-full" data-aos="fade-left">
               <div className="relative w-full lg:w-[650px] h-[500px] lg:h-[650px]">
                 {/* Image */}
-                <img
+                <PixelImage
                   src={avatarUrl}
-                  alt={about?.name || 'Profile'}
-                  className="w-full h-full object-cover object-center rounded-2xl"
+                  grid="8x8"
+                  grayscaleAnimation
+                  pixelFadeInDuration={1000}
+                  maxAnimationDelay={1200}
+                  colorRevealDelay={1500}
                 />
               </div>
             </div>
